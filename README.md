@@ -1,18 +1,23 @@
 # pequod-quarto
 
-A Quarto extension applying the [Pequod palette](https://github.com/tiagojct/pequod),
-a pigment-inspired colour scheme rooted in *Moby-Dick*. Body and headings
-use Atkinson Hyperlegible Next; code uses Atkinson Hyperlegible Mono. Three
-formats ship:
+A Quarto extension that applies the [Pequod palette](https://github.com/tiagojct/pequod)
+to slide decks and documents. Body and headings render in Atkinson
+Hyperlegible Next; code renders in Atkinson Hyperlegible Mono. Both fonts
+are bundled inside the theme (no Google Fonts CDN at render time).
 
-- `pequod-revealjs`: slides on warm paper
-- `pequod-dark-revealjs`: slides on deep ink
-- `pequod-html`: documents, reports, articles
+The extension contributes three formats:
 
-Fonts are bundled (no Google Fonts CDN). Code highlighting maps each Pandoc
-syntax token to a crew member: Ahab keywords, Tashtego strings, Pip numbers,
-Ishmael comments, Starbuck functions, Queequeg types, Stubb constants,
-Daggoo variables.
+| Format | Use for | Surface |
+|---|---|---|
+| `pequod-revealjs` | Slide decks | Warm paper |
+| `pequod-dark-revealjs` | Slide decks | Deep ink |
+| `pequod-html` | Documents, reports, articles | Warm paper |
+
+Pandoc syntax classes map to the crew: keyword → Ahab, string → Tashtego,
+number → Pip, comment → Ishmael, function → Starbuck, type → Queequeg,
+constant → Stubb, variable → Daggoo. The mapping is identical across the
+revealjs and html formats, so syntax highlighting in a slide matches syntax
+highlighting in a report.
 
 ## Install
 
