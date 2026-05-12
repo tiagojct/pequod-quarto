@@ -1,0 +1,7 @@
+/.quarto/
+/_freeze/
+/example_files/
+example.html
+*.tex
+*.pdf
+.DS_Store

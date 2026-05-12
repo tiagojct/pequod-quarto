@@ -1,0 +1,19 @@
+# Files at the repo root that should NOT be copied into a downstream project
+# by `quarto use template tiagojct/pequod-quarto`. Only template.qmd and
+# _extensions/ should land in the consumer's project.
+
+README.md
+LICENSE-MIT
+LICENSE-CC-BY-4.0
+example.qmd
+example-dark.qmd
+example-html.qmd
+example_files/
+example-dark_files/
+example-html_files/
+example.html
+example-dark.html
+example-html.html
+scripts/
+.gitignore
+.quartoignore

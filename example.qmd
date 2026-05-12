@@ -1,0 +1,59 @@
+---
+title: "Pequod"
+subtitle: "A Quarto reveal.js theme"
+author: "Tiago Jacinto"
+format:
+  pequod-revealjs: default
+---
+
+## Reading first
+
+A pigment-inspired palette rooted in *Moby-Dick*. Warm paper on one end,
+deep ink on the other, with eight accent hues named after the crew of the
+*Pequod*.
+
+> Call me Ishmael. Some years ago — never mind how long precisely — having
+> little or no money in my purse, and nothing particular to interest me on
+> shore, I thought I would sail about a little.
+
+## The crew, as colour
+
+- **Ahab** — red, keyword, the wound
+- **Starbuck** — blue, function, the steady mate
+- **Queequeg** — indigo, type, tattoo ink
+- **Pip** — yellow, number, child of the sun
+- **Ishmael** — grey, comment, the narrator
+- **Stubb** — orange, constant, pipe and flame
+- **Tashtego** — green, string, woods and moss
+- **Daggoo** — brown, variable, earth and mahogany
+
+## A little code
+
+```python
+# fit a small model, the slow way
+import numpy as np
+
+def loss(theta: np.ndarray, x: np.ndarray, y: np.ndarray) -> float:
+    """Mean squared error for a linear model."""
+    return float(np.mean((x @ theta - y) ** 2))
+
+theta = np.zeros(3)
+print(loss(theta, X, y))
+```
+
+Inline code such as `loss(theta, X, y)` also picks up the Pequod register.
+
+## Tables and links
+
+| Surface | Channel | Status |
+|---|---|---|
+| VS Code | Marketplace | live |
+| Tailwind | npm | live |
+| Quarto | this folder | new |
+
+See <https://tiagojct.eu/projects/pequod/> for the full narrative.
+
+::: {.callout-note}
+Vertical centering is handled by reveal.js; this theme keeps content
+left-aligned horizontally for readability of prose.
+:::

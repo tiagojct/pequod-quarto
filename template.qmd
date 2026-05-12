@@ -1,0 +1,27 @@
+---
+title: "Pequod"
+subtitle: "A Quarto reveal.js theme"
+author: "Your name"
+format:
+  pequod-revealjs: default
+---
+
+## Reading first
+
+A pigment-inspired palette rooted in *Moby-Dick*. Warm paper on one end,
+deep ink on the other, with eight accent hues named after the crew of the
+*Pequod*.
+
+> Call me Ishmael.
+
+## A little code
+
+```python
+def loss(theta, x, y):
+    return ((x @ theta - y) ** 2).mean()
+```
+
+::: {.callout-note}
+Vertical centering is handled by reveal.js; this theme keeps content
+left-aligned horizontally for readability of prose.
+:::

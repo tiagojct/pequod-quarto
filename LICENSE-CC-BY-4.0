@@ -1,0 +1,18 @@
+Pequod palette — Creative Commons Attribution 4.0 International (CC-BY-4.0)
+
+The colour values that constitute the Pequod palette (defined in
+`_extensions/pequod/_pequod-palette.scss`) are licensed under the Creative
+Commons Attribution 4.0 International Licence. You are free to share and
+adapt the palette for any purpose, including commercial, provided you give
+appropriate credit.
+
+Credit line:
+    "Pequod palette" by Tiago Jacinto, licensed under CC-BY-4.0.
+    https://github.com/tiagojct/pequod
+
+Full licence text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+The rest of the code in this repository (SCSS rules, Pandoc highlight themes,
+extension manifests, documentation) is separately licensed under MIT — see
+`LICENSE-MIT`. The bundled Atkinson Hyperlegible Next / Mono fonts are
+licensed under SIL OFL 1.1, © Braille Institute of America.

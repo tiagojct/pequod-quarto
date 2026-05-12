@@ -1,0 +1,42 @@
+// =============================================================================
+// Pequod — design tokens (Sass partial, no Quarto section markers)
+// Imported from pequod.scss (light) / pequod-dark.scss / pequod-html.scss.
+// =============================================================================
+
+// ---- Log scale (warm paper → deep ink) --------------------------------------
+$log-50:  #F7F3EE !default;
+$log-100: #EAE1D7 !default;
+$log-150: #DBC9B6 !default;
+$log-200: #CFAD8E !default;
+$log-300: #BD8C68 !default;
+$log-400: #A16E50 !default;
+$log-500: #835A49 !default;
+$log-600: #335260 !default;
+$log-700: #163F54 !default;
+$log-800: #0D2F42 !default;
+$log-900: #0C222F !default;
+$log-950: #0B1720 !default;
+
+// ---- Crew accents — light variants -----------------------------------------
+$ahab-light:     #A83732 !default;
+$starbuck-light: #0082B1 !default;
+$queequeg-light: #253E82 !default;
+$pip-light:      #6A4A00 !default;
+$ishmael-light:  #76716B !default;
+$stubb-light:    #CA6435 !default;
+$tashtego-light: #177C55 !default;
+$daggoo-light:   #552823 !default;
+
+// ---- Crew accents — dark variants ------------------------------------------
+$ahab-dark:     #E3877C !default;
+$starbuck-dark: #A6DFFF !default;
+$queequeg-dark: #838CCF !default;
+$pip-dark:      #DEC577 !default;
+$ishmael-dark:  #BFBBB6 !default;
+$stubb-dark:    #FFD9BB !default;
+$tashtego-dark: #82C4A2 !default;
+$daggoo-dark:   #A17069 !default;
+
+// ---- Font stacks ------------------------------------------------------------
+$font-family-sans-serif: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif !default;
+$font-family-monospace:  "Atkinson Hyperlegible Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace !default;

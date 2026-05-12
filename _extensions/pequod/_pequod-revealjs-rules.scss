@@ -1,0 +1,275 @@
+// =============================================================================
+// Pequod — shared reveal.js rules (Sass partial, no Quarto section markers)
+// Imported from pequod.scss (light) and pequod-dark.scss inside scss:rules.
+// Required vars (set in the importer's scss:defaults section):
+//   $body-bg, $body-color, $surface, $border-color, $heading-color,
+//   $link-color, $link-color-hover, $code-color, $code-block-bg,
+//   $code-block-border-color, $callout-bg, $callout-title-bg
+// Plus all crew accent aliases ($ahab, $starbuck, …).
+// =============================================================================
+
+// ---- Slide surface & typography --------------------------------------------
+
+.reveal {
+  font-family: $font-family-sans-serif;
+  font-weight: 400;
+  color: $body-color;
+
+  // Vertical centering: `center: true` in _extension.yml.
+  // Horizontal axis stays left-aligned for prose readability.
+  .slides {
+    text-align: left;
+  }
+
+  .slides section,
+  .slides section > section {
+    line-height: $presentation-line-height;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $presentation-heading-font;
+    color:       $heading-color;
+    font-weight: $presentation-heading-font-weight;
+    letter-spacing: $presentation-heading-letter-spacing;
+    text-transform: none;
+    text-shadow: none;
+    margin-bottom: 0.4em;
+  }
+}
+
+// ---- Title slide -----------------------------------------------------------
+
+.reveal #title-slide,
+.reveal .quarto-title-block {
+  text-align: center;
+
+  h1.title,
+  .title {
+    color: $body-color;
+    margin-bottom: 0.3em;
+  }
+
+  .subtitle,
+  p.subtitle {
+    color: $heading-color;
+    font-weight: 400;
+    font-style: italic;
+    margin-bottom: 1.5em;
+  }
+
+  .quarto-title-authors {
+    margin-top: 1.2em;
+  }
+
+  .quarto-title-author-name {
+    color: $body-color;
+    font-weight: 500;
+  }
+
+  .date,
+  .quarto-title-author-email {
+    color: $heading-color;
+    font-size: 0.8em;
+  }
+}
+
+// ---- Links — slide content only --------------------------------------------
+
+.reveal .slides a {
+  color: $link-color;
+  text-decoration: underline;
+  text-decoration-color: rgba($link-color, 0.45);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color 120ms ease;
+}
+
+.reveal .slides a:hover {
+  color: $link-color-hover;
+  text-decoration-color: $link-color-hover;
+}
+
+// ---- Code — inline & blocks (colour comes from the Pandoc highlight theme) -
+
+.reveal code,
+.reveal pre {
+  font-family: $font-family-monospace;
+}
+
+.reveal :not(pre) > code {
+  background: $surface;
+  color: $code-color;
+  padding: 0.08em 0.35em;
+  border-radius: 3px;
+  font-size: 0.92em;
+}
+
+.reveal pre {
+  box-shadow: none;
+  background: transparent;
+}
+
+.reveal div.sourceCode,
+.reveal pre.sourceCode {
+  background: $code-block-bg;
+  border: 1px solid $code-block-border-color;
+  border-radius: 4px;
+}
+
+.reveal pre code {
+  background: transparent;
+  border: 0;
+  padding: 0.65em 0.85em;
+  max-height: 520px;
+  font-size: 0.78em;
+  line-height: 1.45;
+}
+
+// ---- Blockquote ------------------------------------------------------------
+
+.reveal blockquote {
+  background: $surface;
+  border-left: 4px solid $log-400;
+  padding: 0.55em 0.9em;
+  color: $heading-color;
+  font-style: italic;
+  box-shadow: none;
+  width: auto;
+}
+
+// ---- Tables ----------------------------------------------------------------
+
+.reveal table {
+  border-collapse: collapse;
+  margin: 0.5em 0;
+  font-size: 0.9em;
+
+  th, td {
+    padding: 0.4em 0.7em;
+    border-bottom: 1px solid $border-color;
+  }
+
+  th {
+    color: $heading-color;
+    font-weight: 600;
+    border-bottom: 2px solid $log-400;
+  }
+}
+
+// ---- Lists -----------------------------------------------------------------
+
+.reveal ul,
+.reveal ol {
+  display: block;
+}
+
+.reveal li {
+  margin-bottom: 0.25em;
+}
+
+.reveal li::marker {
+  color: $log-400;
+}
+
+// ---- Horizontal rule -------------------------------------------------------
+
+.reveal hr {
+  border: 0;
+  border-top: 1px solid $border-color;
+  margin: 1em 0;
+}
+
+// ---- Slide images — sit on the paper, don't float --------------------------
+
+.reveal .slides img:not(.r-stretch):not([class*="logo"]) {
+  border: 1px solid $border-color;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba($log-500, 0.12);
+  background: $surface;
+}
+
+// ---- UI chrome -------------------------------------------------------------
+
+.reveal .progress {
+  color: $link-color;
+  background: rgba($border-color, 0.4);
+  height: 3px;
+}
+
+.reveal .controls {
+  color: $heading-color;
+}
+
+.reveal .slide-number,
+.reveal .slide-number a {
+  color: $heading-color;
+  background: transparent;
+  font-family: $font-family-monospace;
+  font-size: 0.7em;
+  text-decoration: none;
+  border: none;
+  opacity: 0.6;
+}
+
+// ---- Callouts — Quarto revealjs DOM ----------------------------------------
+// Actual structure:
+//   .callout.callout-<kind>.callout-titled.callout-style-default
+//     .callout-body
+//       .callout-title         (title row: icon + label)
+//         .callout-icon-container > .callout-icon
+//         <p><strong>...</strong></p>
+//       .callout-content       (body)
+
+.reveal div.callout {
+  margin: 0.8em 0;
+  border-radius: 4px;
+  border: 1px solid $border-color;
+  border-left: 4px solid $log-400;
+  background: $callout-bg;
+  color: $body-color;
+  overflow: hidden;
+  box-shadow: none;
+
+  .callout-body { padding: 0; }
+
+  .callout-title {
+    padding: 0.4em 0.8em;
+    background: $callout-title-bg;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.45em;
+    color: $heading-color;
+
+    p { margin: 0; }
+  }
+
+  .callout-icon-container {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .callout-icon::before { color: inherit; }
+
+  .callout-content {
+    padding: 0.55em 0.9em;
+  }
+
+  // Each kind: bump specificity with `.callout-style-default` so the title
+  // background wins against Quarto's built-in defaults.
+  &.callout-note.callout-style-default      { border-left-color: $starbuck;
+    .callout-title { color: $starbuck; background: rgba($starbuck, 0.10); }
+    .callout-icon::before { color: $starbuck; } }
+  &.callout-tip.callout-style-default       { border-left-color: $tashtego;
+    .callout-title { color: $tashtego; background: rgba($tashtego, 0.10); }
+    .callout-icon::before { color: $tashtego; } }
+  &.callout-warning.callout-style-default   { border-left-color: $stubb;
+    .callout-title { color: $stubb; background: rgba($stubb, 0.10); }
+    .callout-icon::before { color: $stubb; } }
+  &.callout-caution.callout-style-default   { border-left-color: $ahab;
+    .callout-title { color: $ahab; background: rgba($ahab, 0.10); }
+    .callout-icon::before { color: $ahab; } }
+  &.callout-important.callout-style-default { border-left-color: $ahab;
+    .callout-title { color: $ahab; background: rgba($ahab, 0.10); }
+    .callout-icon::before { color: $ahab; } }
+}

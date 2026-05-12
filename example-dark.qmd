@@ -1,0 +1,27 @@
+---
+title: "Pequod (dark)"
+subtitle: "A Quarto reveal.js theme"
+author: "Tiago Jacinto"
+format:
+  pequod-dark-revealjs: default
+---
+
+## Reading first
+
+A pigment-inspired palette rooted in *Moby-Dick*. Warm paper on one end,
+deep ink on the other, with eight accent hues named after the crew of the
+*Pequod*.
+
+> Call me Ishmael.
+
+## A little code
+
+```python
+def loss(theta, x, y):
+    """Mean squared error for a linear model."""
+    return ((x @ theta - y) ** 2).mean()
+```
+
+::: {.callout-note}
+This is the dark variant — ink ground, paper text, dark crew accents.
+:::

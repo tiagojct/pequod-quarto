@@ -1,0 +1,66 @@
+/*-- scss:defaults --*/
+
+// =============================================================================
+// Pequod — dark mode (Quarto reveal.js theme entry)
+// Shares partials with the light extension via relative ../pequod path.
+// =============================================================================
+
+@import "../pequod/pequod-palette";
+
+// ---- Active crew aliases (dark) ---------------------------------------------
+$ahab:     $ahab-dark     !default;
+$starbuck: $starbuck-dark !default;
+$queequeg: $queequeg-dark !default;
+$pip:      $pip-dark      !default;
+$ishmael:  $ishmael-dark  !default;
+$stubb:    $stubb-dark    !default;
+$tashtego: $tashtego-dark !default;
+$daggoo:   $daggoo-dark   !default;
+
+// ---- Surface & text — deep ink ---------------------------------------------
+$body-bg:       $log-950 !default;
+$body-color:    $log-100 !default;
+$surface:       $log-900 !default;
+$surface-alt:   $log-800 !default;
+$border-color:  $log-800 !default;
+$heading-color: $log-200 !default;
+
+// ---- Links ------------------------------------------------------------------
+$link-color:       $starbuck !default;
+$link-color-hover: $queequeg !default;
+
+// ---- Selection --------------------------------------------------------------
+$selection-bg:    $log-700 !default;
+$selection-color: $log-50  !default;
+
+// ---- Type scale -------------------------------------------------------------
+$presentation-font-size-root: 28px !default;
+$presentation-line-height:    1.45 !default;
+$presentation-block-margin:   18px !default;
+
+$presentation-heading-font:           "Atkinson Hyperlegible Next", system-ui, sans-serif !default;
+$presentation-heading-color:          $heading-color !default;
+$presentation-heading-font-weight:    600 !default;
+$presentation-heading-line-height:    1.2 !default;
+$presentation-heading-letter-spacing: -0.005em !default;
+$presentation-heading-text-transform: none !default;
+$presentation-heading-text-shadow:    none !default;
+
+$presentation-h1-font-size: 2.00em !default;
+$presentation-h2-font-size: 1.55em !default;
+$presentation-h3-font-size: 1.25em !default;
+$presentation-h4-font-size: 1.00em !default;
+
+// ---- Code -------------------------------------------------------------------
+$code-block-bg:           $log-900 !default;
+$code-block-border-color: $log-800 !default;
+$code-color:              $daggoo  !default;
+
+// ---- Callout surfaces -------------------------------------------------------
+$callout-bg:       $log-900             !default;
+$callout-title-bg: rgba($log-800, 0.6)  !default;
+
+/*-- scss:rules --*/
+
+@import "../pequod/pequod-fonts";
+@import "../pequod/pequod-revealjs-rules";
