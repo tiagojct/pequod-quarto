@@ -1,7 +1,11 @@
 /.quarto/
 /_freeze/
-/example_files/
+example_files/
+example-dark_files/
+example-html_files/
 example.html
+example-dark.html
+example-html.html
 *.tex
 *.pdf
 .DS_Store
