@@ -1,13 +1,13 @@
 # pequod-quarto
 
-A Quarto extension applying the [Pequod palette](https://github.com/tiagojct/pequod)
-— a pigment-inspired colour scheme rooted in *Moby-Dick*, with **Atkinson
-Hyperlegible Next** for body and headings and **Atkinson Hyperlegible Mono**
-for code. Ships three formats:
+A Quarto extension applying the [Pequod palette](https://github.com/tiagojct/pequod),
+a pigment-inspired colour scheme rooted in *Moby-Dick*. Body and headings
+use Atkinson Hyperlegible Next; code uses Atkinson Hyperlegible Mono. Three
+formats ship:
 
-- `pequod-revealjs` — slides on warm paper
-- `pequod-dark-revealjs` — slides on deep ink
-- `pequod-html` — documents, reports, articles
+- `pequod-revealjs`: slides on warm paper
+- `pequod-dark-revealjs`: slides on deep ink
+- `pequod-html`: documents, reports, articles
 
 Fonts are bundled (no Google Fonts CDN). Code highlighting maps each Pandoc
 syntax token to a crew member: Ahab keywords, Tashtego strings, Pip numbers,
@@ -88,9 +88,10 @@ format:
 
 ## Licence
 
-- **Palette** (the colour values in `_pequod-palette.scss`): CC-BY-4.0,
-  © Tiago Jacinto. See `LICENSE-CC-BY-4.0`.
-- **Code** (everything else in this extension): MIT, © Tiago Jacinto. See
-  `LICENSE-MIT`.
-- **Atkinson Hyperlegible Next & Mono**: SIL OFL 1.1, © Braille Institute
-  of America. Distributed via Google Fonts.
+The colour values in `_pequod-palette.scss` are licensed CC-BY-4.0 (see
+`LICENSE-CC-BY-4.0`); everything else in this extension (SCSS rules,
+Pandoc themes, extension manifests, documentation) is MIT (see
+`LICENSE-MIT`). Both © Tiago Jacinto.
+
+Atkinson Hyperlegible Next and Mono are © Braille Institute of America,
+distributed under SIL OFL 1.1 via Google Fonts.
