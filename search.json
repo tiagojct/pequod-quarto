@@ -1,0 +1,409 @@
+[
+  {
+    "objectID": "install.html",
+    "href": "install.html",
+    "title": "Install",
+    "section": "",
+    "text": "quarto add tiagojct/pequod-quarto\nThis drops the extension under _extensions/tiagojct/pequod/ and _extensions/tiagojct/pequod-dark/. Quarto’s resolver honours the org-prefixed install path automatically.",
+    "crumbs": [
+      "Pequod",
+      "Install"
+    ]
+  },
+  {
+    "objectID": "install.html#from-an-existing-quarto-project",
+    "href": "install.html#from-an-existing-quarto-project",
+    "title": "Install",
+    "section": "",
+    "text": "quarto add tiagojct/pequod-quarto\nThis drops the extension under _extensions/tiagojct/pequod/ and _extensions/tiagojct/pequod-dark/. Quarto’s resolver honours the org-prefixed install path automatically.",
+    "crumbs": [
+      "Pequod",
+      "Install"
+    ]
+  },
+  {
+    "objectID": "install.html#scaffold-a-new-deck-from-the-template",
+    "href": "install.html#scaffold-a-new-deck-from-the-template",
+    "title": "Install",
+    "section": "Scaffold a new deck from the template",
+    "text": "Scaffold a new deck from the template\nquarto use template tiagojct/pequod-quarto\nYou land on a minimal template.qmd already configured for pequod-revealjs.",
+    "crumbs": [
+      "Pequod",
+      "Install"
+    ]
+  },
+  {
+    "objectID": "install.html#pin-a-version",
+    "href": "install.html#pin-a-version",
+    "title": "Install",
+    "section": "Pin a version",
+    "text": "Pin a version\nReleases are tagged. Pin in CI or for reproducibility:\nquarto add tiagojct/pequod-quarto@v0.3.0\nCheck the CHANGELOG for what each release adds.",
+    "crumbs": [
+      "Pequod",
+      "Install"
+    ]
+  },
+  {
+    "objectID": "install.html#update",
+    "href": "install.html#update",
+    "title": "Install",
+    "section": "Update",
+    "text": "Update\nquarto update tiagojct/pequod-quarto",
+    "crumbs": [
+      "Pequod",
+      "Install"
+    ]
+  },
+  {
+    "objectID": "install.html#uninstall",
+    "href": "install.html#uninstall",
+    "title": "Install",
+    "section": "Uninstall",
+    "text": "Uninstall\nquarto remove tiagojct/pequod-quarto",
+    "crumbs": [
+      "Pequod",
+      "Install"
+    ]
+  },
+  {
+    "objectID": "install.html#known-issues",
+    "href": "install.html#known-issues",
+    "title": "Install",
+    "section": "Known issues",
+    "text": "Known issues\n\n\n\n\n\n\nWarning\n\n\n\nSingle-file render under org-prefixed install. Quarto’s resolver has a known bug where quarto render subdir/chapter.qmd --to pequod-html may fail to find the extension when installed at _extensions/&lt;org&gt;/&lt;name&gt;/. Workarounds: render project-wide (quarto render), or flatten the extension path to _extensions/&lt;name&gt;/ for that project.\n\n\n\n\n\n\n\n\nWarning\n\n\n\nTypst PDF requires the bundled TTFs. The extension ships static-weight Atkinson Hyperlegible Next + Mono TTFs under _extensions/pequod/fonts/. If you remove that directory, Typst falls back to its built-in defaults (Libertinus Serif + DejaVu Sans Mono) and the visual identity collapses.\n\n\n\n\n\n\n\n\nWarning\n\n\n\npequod-html dark mode requires theme-toggle: true. Set it in your project’s _quarto.yml to surface the navbar control that flips between the light and dark stylesheets:\nformat:\n  pequod-html:\n    theme-toggle: true",
+    "crumbs": [
+      "Pequod",
+      "Install"
+    ]
+  },
+  {
+    "objectID": "formats.html",
+    "href": "formats.html",
+    "title": "Formats",
+    "section": "",
+    "text": "The extension contributes four Quarto formats. Each one is selected by name in the format: key of a .qmd frontmatter or a project _quarto.yml. All four formats share the same palette tokens, font stacks, and syntax-highlighting mapping — switching formats does not mean re-learning the visual language.",
+    "crumbs": [
+      "Pequod",
+      "Formats"
+    ]
+  },
+  {
+    "objectID": "formats.html#pequod-revealjs-slide-decks-light",
+    "href": "formats.html#pequod-revealjs-slide-decks-light",
+    "title": "Formats",
+    "section": "pequod-revealjs — slide decks (light)",
+    "text": "pequod-revealjs — slide decks (light)\n---\ntitle: \"Your title\"\nformat: pequod-revealjs\n---\nDefaults that ship: 1600 × 900 surface, center: true (slides vertically centred by reveal), slide-number: c/t, Atkinson Hyperlegible Next body, Atkinson Hyperlegible Mono code. Per-slide opt-outs:\n## A photo wall {.no-footer .no-logo}\nThe deck title slide and H1 section dividers already have the footer and logo hidden by convention.",
+    "crumbs": [
+      "Pequod",
+      "Formats"
+    ]
+  },
+  {
+    "objectID": "formats.html#pequod-dark-revealjs-slide-decks-dark",
+    "href": "formats.html#pequod-dark-revealjs-slide-decks-dark",
+    "title": "Formats",
+    "section": "pequod-dark-revealjs — slide decks (dark)",
+    "text": "pequod-dark-revealjs — slide decks (dark)\nformat: pequod-dark-revealjs\nSame shape as the light variant, deep-ink ground, paper-tone text, dark crew accents.",
+    "crumbs": [
+      "Pequod",
+      "Formats"
+    ]
+  },
+  {
+    "objectID": "formats.html#pequod-html-documents-light-dark",
+    "href": "formats.html#pequod-html-documents-light-dark",
+    "title": "Formats",
+    "section": "pequod-html — documents (light + dark)",
+    "text": "pequod-html — documents (light + dark)\nformat:\n  pequod-html:\n    theme-toggle: true   # surfaces the navbar light/dark control\nWhat’s wired by default:\n\ntheme: { light: pequod-html.scss, dark: pequod-html-dark.scss }\nhighlight-style: { light: pequod.theme, dark: pequod-dark.theme }\ncode-copy: true, code-overflow: wrap\nsmooth-scroll: true, anchor-sections: true\nlink-external-newwindow: true (external links open new tab)\nfig-cap-location: bottom, tbl-cap-location: top\n\nPrint stylesheet built in: hides navbar / sidebar / TOC / footer, prints (href) after external links, strips surface fills, prevents page breaks inside headings / figures / tables.",
+    "crumbs": [
+      "Pequod",
+      "Formats"
+    ]
+  },
+  {
+    "objectID": "formats.html#pequod-typst-pdf-output",
+    "href": "formats.html#pequod-typst-pdf-output",
+    "title": "Formats",
+    "section": "pequod-typst — PDF output",
+    "text": "pequod-typst — PDF output\nformat: pequod-typst\nWhat’s wired by default:\n\nA4 paper, 2.5 cm margins\nmainfont: \"Atkinson Hyperlegible Next\", monofont: \"Atkinson Hyperlegible Mono\", codefont: \"Atkinson Hyperlegible Mono\" (Quarto’s Typst template reads codefont, not monofont, for show raw)\nfont-paths: [fonts] relative to the extension dir so the bundled static-weight TTFs load under the org-prefixed install\npequod-typst.typ include that overrides Quarto’s default #callout(...) to remap Bootstrap colours to the crew\n\nCrew → callout colour mapping (identical across HTML / reveal / Typst):\n\n\n\nCallout\nCrew\nHue\n\n\n\n\nnote\nStarbuck\nblue\n\n\ntip\nTashtego\ngreen\n\n\nwarning\nStubb\norange\n\n\ncaution\nPip\nwarm dark yellow\n\n\nimportant\nAhab (danger)\nred",
+    "crumbs": [
+      "Pequod",
+      "Formats"
+    ]
+  },
+  {
+    "objectID": "customise.html",
+    "href": "customise.html",
+    "title": "Customise",
+    "section": "",
+    "text": "Every token in pequod-variables.scss (light) / pequod-variables-dark.scss (dark) is declared with !default, so any earlier declaration with the same name wins. Drop a tiny SCSS overrides file into your project and prepend it to the theme list:\n// my-overrides.scss\n/*-- scss:defaults --*/\n\n// Crank Starbuck's link colour darker for a print-leaning publication.\n$starbuck: #00658E !default;\n\n// Or shift the log-50 paper towards a colder white.\n$log-50: #F5F2EC !default;\nWire it in:\nformat:\n  pequod-revealjs:\n    theme:\n      - my-overrides.scss\n      - default\nThe default line keeps Quarto’s default theme participating; the extension’s own SCSS is added by Quarto automatically.",
+    "crumbs": [
+      "Pequod",
+      "Customise"
+    ]
+  },
+  {
+    "objectID": "customise.html#override-a-single-token",
+    "href": "customise.html#override-a-single-token",
+    "title": "Customise",
+    "section": "",
+    "text": "Every token in pequod-variables.scss (light) / pequod-variables-dark.scss (dark) is declared with !default, so any earlier declaration with the same name wins. Drop a tiny SCSS overrides file into your project and prepend it to the theme list:\n// my-overrides.scss\n/*-- scss:defaults --*/\n\n// Crank Starbuck's link colour darker for a print-leaning publication.\n$starbuck: #00658E !default;\n\n// Or shift the log-50 paper towards a colder white.\n$log-50: #F5F2EC !default;\nWire it in:\nformat:\n  pequod-revealjs:\n    theme:\n      - my-overrides.scss\n      - default\nThe default line keeps Quarto’s default theme participating; the extension’s own SCSS is added by Quarto automatically.",
+    "crumbs": [
+      "Pequod",
+      "Customise"
+    ]
+  },
+  {
+    "objectID": "customise.html#replace-the-body-mono-fonts",
+    "href": "customise.html#replace-the-body-mono-fonts",
+    "title": "Customise",
+    "section": "Replace the body / mono fonts",
+    "text": "Replace the body / mono fonts\nThe font stacks are themselves !default tokens. Override in my-overrides.scss:\n$font-family-sans-serif: \"IBM Plex Sans\", system-ui, sans-serif !default;\n$font-family-monospace:  \"JetBrains Mono\", ui-monospace, monospace !default;\nIf you replace the body font, you almost certainly also want to swap the mainfont: / monofont: YAML keys so reveal and Typst pick the same family up:\nformat:\n  pequod-revealjs:\n    theme:\n      - my-overrides.scss\n    mainfont: \"IBM Plex Sans\"\n    monofont: \"JetBrains Mono\"\nSelf-hosted woff2 fonts can be wired with Quarto’s standard @font-face recipe in your own include-in-header partial.",
+    "crumbs": [
+      "Pequod",
+      "Customise"
+    ]
+  },
+  {
+    "objectID": "customise.html#recolour-the-data-viz-palette",
+    "href": "customise.html#recolour-the-data-viz-palette",
+    "title": "Customise",
+    "section": "Recolour the data-viz palette",
+    "text": "Recolour the data-viz palette\nEight categorical chart slots live in _pequod-palette.scss as $pequod-chart-1..8-light / …-dark. Override individual slots:\n// my-overrides.scss\n$pequod-chart-1-light: #2A2A2A !default;   // softer black for the\n                                           // primary series\nThe active set is exported as --pequod-chart-1..8 CSS custom properties on :root so Observable / htmlwidgets / plain JS can pick them up at runtime. See Data viz for usage.",
+    "crumbs": [
+      "Pequod",
+      "Customise"
+    ]
+  },
+  {
+    "objectID": "customise.html#add-a-logo-once-used-everywhere",
+    "href": "customise.html#add-a-logo-once-used-everywhere",
+    "title": "Customise",
+    "section": "Add a logo (once, used everywhere)",
+    "text": "Add a logo (once, used everywhere)\nThe bundled pequod.lua filter forwards a single pequod.logo metadata key to the format-specific keys that Quarto / Reveal consume. Set in your project _quarto.yml:\npequod:\n  logo: assets/logo.svg\nThe filter writes to meta.logo (reveal), meta.website.navbar.logo (websites) and meta.book.navbar.logo (books), but only if the user has not already set them.",
+    "crumbs": [
+      "Pequod",
+      "Customise"
+    ]
+  },
+  {
+    "objectID": "customise.html#add-an-open-graph-card-image",
+    "href": "customise.html#add-an-open-graph-card-image",
+    "title": "Customise",
+    "section": "Add an Open Graph card image",
+    "text": "Add an Open Graph card image\nSame filter, same key shape:\npequod:\n  og-image: assets/og-card.png\nThe filter resolves og:image in this order: pequod.og-image → website.open-graph.image → per-page og-image. Twitter Card upgrades to summary_large_image when an image is set.",
+    "crumbs": [
+      "Pequod",
+      "Customise"
+    ]
+  },
+  {
+    "objectID": "customise.html#per-slide-opt-outs-reveal",
+    "href": "customise.html#per-slide-opt-outs-reveal",
+    "title": "Customise",
+    "section": "Per-slide opt-outs (reveal)",
+    "text": "Per-slide opt-outs (reveal)\nQuarto markdown’s curly attribute syntax carries through:\n## A photo wall {.no-footer .no-logo}\nThe deck title slide and H1 section dividers already hide the footer and logo by convention. .no-footer / .no-logo only need to be added on body slides where the corner mark would clash with the content.",
+    "crumbs": [
+      "Pequod",
+      "Customise"
+    ]
+  },
+  {
+    "objectID": "customise.html#highlight-pill",
+    "href": "customise.html#highlight-pill",
+    "title": "Customise",
+    "section": "Highlight pill",
+    "text": "Highlight pill\nSpans marked with .highlight or &lt;mark&gt; get a warm-paper-deep background in light mode and a deep-paper-light background in dark mode. Both $highlight-bg and $highlight-color are !default tokens; override per-mode in your pequod.scss / pequod-dark.scss overrides file.",
+    "crumbs": [
+      "Pequod",
+      "Customise"
+    ]
+  },
+  {
+    "objectID": "accessibility.html",
+    "href": "accessibility.html",
+    "title": "Accessibility",
+    "section": "",
+    "text": "The theme treats accessibility as a non-negotiable requirement, not a nice-to-have. Every accent surface, every link, every callout, every focus cue has been audited against WCAG 2.2 AA at minimum.",
+    "crumbs": [
+      "Pequod",
+      "Accessibility"
+    ]
+  },
+  {
+    "objectID": "accessibility.html#two-channel-link-cue",
+    "href": "accessibility.html#two-channel-link-cue",
+    "title": "Accessibility",
+    "section": "Two-channel link cue",
+    "text": "Two-channel link cue\nProse links carry three distinguishing cues, not one:\n\nColour — Starbuck blue (light) / Starbuck light (dark)\nUnderline — 2 px Starbuck-tinted, 0.18em underline offset\nWeight — 500 (medium) rather than the body’s 400\n\nThe combination of colour-plus-underline satisfies WCAG 1.4.1 (do not rely on colour alone). On monochrome renderers (e-paper, fax printouts, high-contrast OS modes), the underline and weight cues still distinguish links from body text.\nThe cue is scoped to main, article, .content, and .quarto-document-content so navbar / sidebar / TOC / footer / anchor / citation links keep their own treatments and don’t drown the page in underlines.",
+    "crumbs": [
+      "Pequod",
+      "Accessibility"
+    ]
+  },
+  {
+    "objectID": "accessibility.html#focus-indicator",
+    "href": "accessibility.html#focus-indicator",
+    "title": "Accessibility",
+    "section": "Focus indicator",
+    "text": "Focus indicator\n:focus-visible carries a body-colour outline + a Starbuck box-shadow glow.\n:focus-visible {\n  outline: 2px solid $body-color;\n  outline-offset: 2px;\n  box-shadow: 0 0 0 5px rgba($link-color, 0.35);\n}\nA pure-blue outline alone would not pass WCAG 1.4.11 contrast against the warm-paper background (~3:1, below the 3:1 cap-floor for non-text contrast against an adjacent colour). The body-colour outline carries the primary contrast; the Starbuck glow rides as the brand cue.",
+    "crumbs": [
+      "Pequod",
+      "Accessibility"
+    ]
+  },
+  {
+    "objectID": "accessibility.html#callout-palette-all-five-colours-hold-aa",
+    "href": "accessibility.html#callout-palette-all-five-colours-hold-aa",
+    "title": "Accessibility",
+    "section": "Callout palette — all five colours hold AA",
+    "text": "Callout palette — all five colours hold AA\n\n\n\n\n\n\n\n\n\n\n\n\nCallout\nLight role\nLight hex\nLight contrast against $log-50\nDark role\nDark hex\nDark contrast against $log-950\n\n\n\n\nnote\nStarbuck\n#0082B1\n4.58:1\nStarbuck dark\n#A6DFFF\n15.2:1\n\n\ntip\nTashtego\n#177C55\n5.18:1\nTashtego dark\n#82C4A2\n10.4:1\n\n\nwarning\nStubb\n#CA6435\n4.61:1\nStubb dark\n#FFD9BB\n16.1:1\n\n\ncaution\nPip\n#6A4A00\n8.84:1\nPip dark\n#DEC577\n12.7:1\n\n\nimportant\nAhab (danger)\n#A83732\n7.46:1\nDanger dark\n#F47A6E\n8.92:1\n\n\n\nThe colour-coded left rule is reinforced by a tinted header with the same crew colour and a Bootstrap icon — so the callout type is distinguishable to colour-blind readers (the rule + icon + label text carry the information together).",
+    "crumbs": [
+      "Pequod",
+      "Accessibility"
+    ]
+  },
+  {
+    "objectID": "accessibility.html#reduced-motion",
+    "href": "accessibility.html#reduced-motion",
+    "title": "Accessibility",
+    "section": "Reduced motion",
+    "text": "Reduced motion\nBoth formats honour prefers-reduced-motion: reduce:\n\nHTML disables theme smooth-scroll. Bootstrap 5’s own $enable-reduced-motion: true covers component-level animations (modals, dropdowns, …).\nReveal clamps animation-duration and transition-duration to 0.01ms on every .reveal * descendant. Reveal’s slide transition is already set to none by default in the extension, but downstream callouts and fragment animations can still animate without this clamp.",
+    "crumbs": [
+      "Pequod",
+      "Accessibility"
+    ]
+  },
+  {
+    "objectID": "accessibility.html#print",
+    "href": "accessibility.html#print",
+    "title": "Accessibility",
+    "section": "Print",
+    "text": "Print\nThe HTML format ships a print stylesheet that:\n\nHides navbar / sidebar / TOC / footer / repo actions / search\nPrints (href) after every external link so readers on paper can follow them\nStrips code-block surface fills (saves toner)\nPrevents page breaks inside headings, figures, and tables\n\nExternal link URLs are excluded for localhost, citations, and the .no-underline class.",
+    "crumbs": [
+      "Pequod",
+      "Accessibility"
+    ]
+  },
+  {
+    "objectID": "accessibility.html#skip-nav",
+    "href": "accessibility.html#skip-nav",
+    "title": "Accessibility",
+    "section": "Skip nav",
+    "text": "Skip nav\nQuarto’s built-in skip-link sits at the top of every HTML page (&lt;a class=\"skip-link\" href=\"#quarto-content\"&gt;Skip to content&lt;/a&gt;). The theme styles the focused state with the same body-colour outline + Starbuck glow as the rest of the focus indicators.",
+    "crumbs": [
+      "Pequod",
+      "Accessibility"
+    ]
+  },
+  {
+    "objectID": "accessibility.html#self-hosted-fonts-gdpr-offline",
+    "href": "accessibility.html#self-hosted-fonts-gdpr-offline",
+    "title": "Accessibility",
+    "section": "Self-hosted fonts (GDPR + offline)",
+    "text": "Self-hosted fonts (GDPR + offline)\nBoth Atkinson Hyperlegible Next and Atkinson Hyperlegible Mono are shipped as base64-inlined woff2 inside _pequod-fonts.scss. No network requests fire at page-load time; the page renders the institutional typography even with the user offline or with a strict Content-Security-Policy font-src 'self' rule.\nThe Typst format ships static-weight TTFs under _extensions/pequod/fonts/ for the same reason — Typst loads them through font-paths: [fonts] (relative to the extension dir).",
+    "crumbs": [
+      "Pequod",
+      "Accessibility"
+    ]
+  },
+  {
+    "objectID": "data-viz.html",
+    "href": "data-viz.html",
+    "title": "Data viz",
+    "section": "",
+    "text": "Eight categorical chart colours, drawn from the crew, ordered so the first colours seen are also the most legible against the active ground. The palette ships in two variants (light + dark) and the active set is exported as CSS custom properties on :root.",
+    "crumbs": [
+      "Pequod",
+      "Data viz"
+    ]
+  },
+  {
+    "objectID": "data-viz.html#slot-table",
+    "href": "data-viz.html#slot-table",
+    "title": "Data viz",
+    "section": "Slot table",
+    "text": "Slot table\n\n\n\n\n\n\n\n\n\nSlot\nLight hex\nDark hex\nCrew\n\n\n\n\n--pequod-chart-1\n#0D2F42\n#EAE1D7\nlog-800 / log-100 (deep ink ↔︎ warm paper)\n\n\n--pequod-chart-2\n#0082B1\n#A6DFFF\nStarbuck\n\n\n--pequod-chart-3\n#A83732\n#E3877C\nAhab\n\n\n--pequod-chart-4\n#177C55\n#82C4A2\nTashtego\n\n\n--pequod-chart-5\n#CA6435\n#FFD9BB\nStubb\n\n\n--pequod-chart-6\n#253E82\n#838CCF\nQueequeg\n\n\n--pequod-chart-7\n#6A4A00\n#DEC577\nPip\n\n\n--pequod-chart-8\n#552823\n#A17069\nDaggoo\n\n\n\nThe first slot is anchored to the strongest body-text contrast in each mode — use it for the primary series and reach for slots 2..N in order for additional series. Charts with two series should use slots 1 + 2 (paper-vs-Starbuck), three series should add slot 3 (Ahab), and so on.",
+    "crumbs": [
+      "Pequod",
+      "Data viz"
+    ]
+  },
+  {
+    "objectID": "data-viz.html#read-the-active-set-from-js",
+    "href": "data-viz.html#read-the-active-set-from-js",
+    "title": "Data viz",
+    "section": "Read the active set from JS",
+    "text": "Read the active set from JS\nconst root = document.documentElement;\nconst series = Array.from({ length: 8 }, (_, i) =&gt;\n  getComputedStyle(root).getPropertyValue(`--pequod-chart-${i + 1}`).trim()\n);\nThe values flip automatically when the user toggles light / dark because the dark stylesheet redeclares the same custom properties under its own :root. Charts that pull from getComputedStyle at each render pick the new palette up without rerunning the layout pipeline.",
+    "crumbs": [
+      "Pequod",
+      "Data viz"
+    ]
+  },
+  {
+    "objectID": "data-viz.html#read-from-an-observable-cell",
+    "href": "data-viz.html#read-from-an-observable-cell",
+    "title": "Data viz",
+    "section": "Read from an Observable cell",
+    "text": "Read from an Observable cell\n// Pull all eight slots into an array Observable can use as a scale.\nconst pequod = Array.from({ length: 8 }, (_, i) =&gt;\n  getComputedStyle(document.documentElement)\n    .getPropertyValue(`--pequod-chart-${i + 1}`)\n    .trim()\n);\n\nPlot.plot({\n  marks: [\n    Plot.barY(data, { x: \"category\", y: \"value\", fill: \"category\" })\n  ],\n  color: { range: pequod }\n})",
+    "crumbs": [
+      "Pequod",
+      "Data viz"
+    ]
+  },
+  {
+    "objectID": "data-viz.html#read-from-r-knitr-results-asis",
+    "href": "data-viz.html#read-from-r-knitr-results-asis",
+    "title": "Data viz",
+    "section": "Read from R (knitr results: asis)",
+    "text": "Read from R (knitr results: asis)\nInject the active slot values into an R chunk via Quarto’s HTML post-processing:\n# In a chunk that runs in the browser session (e.g. via reactable\n# or DT with a custom render hook), the same getComputedStyle call\n# applies. Server-side R cannot read CSS custom properties because\n# no DOM exists; for static R plots, hardcode the hex values from\n# the table above or read them from a YAML config you keep in sync\n# with _pequod-palette.scss.",
+    "crumbs": [
+      "Pequod",
+      "Data viz"
+    ]
+  },
+  {
+    "objectID": "data-viz.html#restraint",
+    "href": "data-viz.html#restraint",
+    "title": "Data viz",
+    "section": "Restraint",
+    "text": "Restraint\nThe eight slots are deliberate. Six of them carry strong crew identity; the seventh (Pip) is a warm dark yellow that doesn’t read well as a primary series colour on the dark variant; the eighth (Daggoo) is a deep brown. Don’t paint every series — most charts only need two or three slots. The point of a constrained palette is that the first colour a reader sees is always institutional.",
+    "crumbs": [
+      "Pequod",
+      "Data viz"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Pequod for Quarto",
+    "section": "",
+    "text": "A Quarto extension that applies the Pequod palette to slide decks, documents, and PDFs. Body and headings render in Atkinson Hyperlegible Next; code renders in Atkinson Hyperlegible Mono. Both fonts are bundled inside the theme — no Google Fonts CDN at render time, GDPR-clean, offline-renderable, cached once per site.",
+    "crumbs": [
+      "Pequod",
+      "Pequod for Quarto"
+    ]
+  },
+  {
+    "objectID": "index.html#the-four-formats",
+    "href": "index.html#the-four-formats",
+    "title": "Pequod for Quarto",
+    "section": "The four formats",
+    "text": "The four formats\n\n\n\n\n\n\n\n\nFormat\nUse for\nSurface\n\n\n\n\npequod-revealjs\nSlide decks\nWarm paper\n\n\npequod-dark-revealjs\nSlide decks\nDeep ink\n\n\npequod-html\nDocuments, reports, articles\nWarm paper, dark variant via toggle\n\n\npequod-typst\nPDF output\nWarm paper\n\n\n\nSyntax highlighting in a slide matches syntax highlighting in a report matches syntax highlighting in a PDF, because all four formats share the same crew → role mapping:\n\n\n\nRole\nCrew\nLight hex\nDark hex\n\n\n\n\nKeyword\nAhab\n#A83732\n#E3877C\n\n\nFunction\nStarbuck\n#0082B1\n#A6DFFF\n\n\nType\nQueequeg\n#253E82\n#838CCF\n\n\nNumber\nPip\n#6A4A00\n#DEC577\n\n\nComment\nIshmael\n#76716B\n#BFBBB6\n\n\nConstant\nStubb\n#CA6435\n#FFD9BB\n\n\nString\nTashtego\n#177C55\n#82C4A2\n\n\nVariable\nDaggoo\n#552823\n#A17069",
+    "crumbs": [
+      "Pequod",
+      "Pequod for Quarto"
+    ]
+  },
+  {
+    "objectID": "index.html#quick-look",
+    "href": "index.html#quick-look",
+    "title": "Pequod for Quarto",
+    "section": "Quick look",
+    "text": "Quick look\n\n\n\n\n\n\nNote\n\n\n\nThis very documentation site is rendered with pequod-html. The theme-toggle in the navbar flips between the warm-paper and deep-ink variants — the toggle ships with the extension and works out of the box once theme-toggle: true is set in your project’s _quarto.yml.\n\n\n# Inline code, code blocks, and tables all read the same register.\nimport numpy as np\n\ndef loss(theta: np.ndarray, x: np.ndarray, y: np.ndarray) -&gt; float:\n    \"\"\"Mean squared error for a linear model.\"\"\"\n    return float(np.mean((x @ theta - y) ** 2))\n\nA whale-ship was my Yale College and my Harvard.\n\nSee Install to pull the extension into your project, or Formats for the per-format YAML knobs.",
+    "crumbs": [
+      "Pequod",
+      "Pequod for Quarto"
+    ]
+  }
+]
