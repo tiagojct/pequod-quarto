@@ -16,6 +16,8 @@ $stubb:    $stubb-light    !default;
 $tashtego: $tashtego-light !default;
 $daggoo:   $daggoo-light   !default;
 
+$danger:   $danger-light   !default;
+
 // ---- Surface & text ---------------------------------------------------------
 $body-bg:       $log-50  !default;
 $body-color:    $log-800 !default;
@@ -23,6 +25,13 @@ $surface:       $log-100 !default;
 $surface-alt:   $log-150 !default;
 $border-color:  $log-150 !default;
 $heading-color: $log-700 !default;
+
+// ---- Highlight pill (slide-level <mark> / .highlight) -----------------------
+// Pinned per-mode: a constant-ink pair would clash against the active
+// surface in one of the two palettes. Light uses Pip-warm paper with
+// near-black ink; dark uses deep ink with warm-paper ink.
+$highlight-bg:    $log-200 !default;
+$highlight-color: $log-900 !default;
 
 // ---- Links ------------------------------------------------------------------
 $link-color:       $starbuck !default;

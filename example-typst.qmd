@@ -1,0 +1,38 @@
+---
+title: "Pequod"
+subtitle: "A Quarto Typst theme"
+author: "Tiago Jacinto"
+format:
+  pequod-typst: default
+---
+
+## Reading first
+
+A pigment-inspired palette rooted in *Moby-Dick*. Warm paper, deep ink,
+eight accent hues named after the crew of the *Pequod*.
+
+> Call me Ishmael.
+
+## A little code
+
+```python
+def loss(theta, x, y):
+    """Mean squared error for a linear model."""
+    return ((x @ theta - y) ** 2).mean()
+```
+
+Inline code like `loss(theta, x, y)` also picks up the Pequod register.
+
+| Surface | Channel | Status |
+|---|---|---|
+| VS Code | Marketplace | live |
+| Quarto  | this folder | new   |
+
+::: {.callout-note}
+Starbuck-blue note rule + tinted header, mirroring the HTML and reveal
+formats.
+:::
+
+::: {.callout-important}
+Ahab-red rule. Reserved for the universal stop signal.
+:::

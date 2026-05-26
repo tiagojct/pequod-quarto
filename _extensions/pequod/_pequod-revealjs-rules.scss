@@ -2,9 +2,10 @@
 // Pequod — shared reveal.js rules (Sass partial, no Quarto section markers)
 // Imported from pequod.scss (light) and pequod-dark.scss inside scss:rules.
 // Required vars (set in the importer's scss:defaults section):
-//   $body-bg, $body-color, $surface, $border-color, $heading-color,
-//   $link-color, $link-color-hover, $code-color, $code-block-bg,
-//   $code-block-border-color, $callout-bg, $callout-title-bg
+//   $body-bg, $body-color, $surface, $surface-alt, $border-color,
+//   $heading-color, $link-color, $link-color-hover, $code-color,
+//   $code-block-bg, $code-block-border-color, $callout-bg,
+//   $callout-title-bg, $highlight-bg, $highlight-color, $danger
 // Plus all crew accent aliases ($ahab, $starbuck, …).
 // =============================================================================
 
@@ -266,10 +267,83 @@
   &.callout-warning.callout-style-default   { border-left-color: $stubb;
     .callout-title { color: $stubb; background: rgba($stubb, 0.10); }
     .callout-icon::before { color: $stubb; } }
-  &.callout-caution.callout-style-default   { border-left-color: $ahab;
-    .callout-title { color: $ahab; background: rgba($ahab, 0.10); }
-    .callout-icon::before { color: $ahab; } }
-  &.callout-important.callout-style-default { border-left-color: $ahab;
-    .callout-title { color: $ahab; background: rgba($ahab, 0.10); }
-    .callout-icon::before { color: $ahab; } }
+  &.callout-caution.callout-style-default   { border-left-color: $pip;
+    .callout-title { color: $pip; background: rgba($pip, 0.12); }
+    .callout-icon::before { color: $pip; } }
+  &.callout-important.callout-style-default { border-left-color: $danger;
+    .callout-title { color: $danger; background: rgba($danger, 0.10); }
+    .callout-icon::before { color: $danger; } }
+}
+
+// ---- Highlight pill (<mark> / .highlight) ----------------------------------
+
+.reveal .slides .highlight,
+.reveal .slides mark {
+  background: $highlight-bg;
+  color: $highlight-color;
+  padding: 0.05em 0.3em;
+  border-radius: $pequod-radius-sm;
+}
+
+// ---- Two-column layout (Quarto's ::: {.columns} convention) ----------------
+
+.reveal .columns {
+  display: flex;
+  gap: 1.5em;
+  align-items: flex-start;
+}
+
+.reveal .column {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+// ---- Focus indicator -------------------------------------------------------
+
+.reveal :focus-visible {
+  outline: 2px solid $heading-color;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba($link-color, 0.35);
+}
+
+// ---- Title-slide & section-divider running matter --------------------------
+// Hide the deck footer + logo on the deck title slide and on H1 section
+// dividers (running matter doesn't belong on chapter starts). :has() lets
+// the footer (which lives at the .reveal level, not inside a slide
+// section) react to whichever slide is currently .present. Supported in
+// Chrome 105+, Firefox 121+, Safari 15.4+ — reveal already targets these.
+//
+// Per-slide opt-out:
+//     ## Slide title {.no-footer .no-logo}
+
+.reveal:has(section.present.title-slide) .footer,
+.reveal:has(#title-slide.present) .footer,
+.reveal:has(section#title-slide.present) .footer,
+.reveal:has(section.present.no-footer) .footer {
+  display: none !important;
+}
+
+.reveal:has(section.present.title-slide) .slide-logo,
+.reveal:has(section.present.title-slide) .reveal-logo,
+.reveal:has(section.present.title-slide) img.logo,
+.reveal:has(#title-slide.present) .slide-logo,
+.reveal:has(#title-slide.present) .reveal-logo,
+.reveal:has(#title-slide.present) img.logo,
+.reveal:has(section.present.no-logo) .slide-logo,
+.reveal:has(section.present.no-logo) .reveal-logo,
+.reveal:has(section.present.no-logo) img.logo {
+  display: none !important;
+}
+
+// ---- Reduced motion --------------------------------------------------------
+// Reveal already honours prefers-reduced-motion for its built-in slide
+// transitions when transition: none, but downstream content (callouts,
+// fragments, embedded animations) can still animate. Clamp them.
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal *, .reveal *::before, .reveal *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

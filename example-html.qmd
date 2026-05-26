@@ -3,7 +3,12 @@ title: "Pequod"
 subtitle: "A Quarto HTML theme"
 author: "Tiago Jacinto"
 format:
-  pequod-html: default
+  pequod-html:
+    # Surfaces the navbar toggle that flips data-bs-theme between
+    # "light" and "dark". The two stylesheets `pequod-html.scss` and
+    # `pequod-html-dark.scss` are compiled together by Quarto and
+    # scoped by the attribute.
+    theme-toggle: true
 ---
 
 ## Reading first
@@ -22,6 +27,20 @@ def loss(theta, x, y):
 ```
 
 Inline code like `loss(theta, x, y)` also picks up the Pequod register.
+
+## Callouts
+
+::: {.callout-note}
+Starbuck-blue note rule + tinted header, mirroring reveal and Typst.
+:::
+
+::: {.callout-tip}
+Tashtego green for tips.
+:::
+
+::: {.callout-important}
+Ahab red — reserved for the universal stop signal.
+:::
 
 ## Links
 

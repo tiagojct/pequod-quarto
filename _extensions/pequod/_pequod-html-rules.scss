@@ -1,0 +1,265 @@
+// =============================================================================
+// Pequod — shared HTML rules (Sass partial, no Quarto section markers)
+// Imported from pequod-html.scss (light) and pequod-html-dark.scss inside
+// scss:rules. Required vars (declared in the importer's scss:defaults
+// section):
+//   $body-bg, $body-color, $headings-color, $border-color, $link-color,
+//   $link-hover-color, $code-color, $code-bg, $pre-bg, $surface,
+//   $surface-alt, $blockquote-border-color, $blockquote-bg, $table-stripe,
+//   $danger
+// Plus all crew accent aliases ($ahab, $starbuck, …).
+// =============================================================================
+
+body {
+  font-feature-settings: "kern", "liga";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// ---- Headings --------------------------------------------------------------
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-sans-serif;
+  letter-spacing: -0.005em;
+}
+
+// ---- Prose links — yellow-style yellow-underline distinction ---------------
+// Scoped to article / main content so navbar, sidebar, page TOC, footer,
+// and repo-action links keep their own treatments. Two-channel cue
+// (colour + 2px underline + weight) satisfies WCAG 1.4.1.
+
+main a:not(.citation):not(.no-underline),
+.content a:not(.citation):not(.no-underline),
+article a:not(.citation):not(.no-underline),
+.quarto-document-content a:not(.citation):not(.no-underline) {
+  color: $link-color;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: rgba($link-color, 0.55);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+  transition: color 120ms ease, text-decoration-color 120ms ease;
+
+  &:hover {
+    color: $link-hover-color;
+    text-decoration-color: $link-hover-color;
+  }
+}
+
+// Citation / cross-reference numbers, anchor icons - no underline cue.
+main a.citation,
+main a.quarto-xref,
+main a.anchorjs-link,
+main .citation a,
+main sup a,
+main .footnote-ref a,
+main .header-anchor {
+  text-decoration: none;
+  font-weight: inherit;
+}
+
+// Navigation contexts: plain.
+.navbar a,
+.sidebar a,
+.toc-actions a,
+nav.toc-active a,
+#TOC a,
+.quarto-secondary-nav a,
+.nav-footer a {
+  text-decoration: none;
+}
+
+// ---- Focus indicator — WCAG 1.4.11 non-text contrast -----------------------
+// Body-colour outline carries the primary contrast; Starbuck blue rides as
+// an outer glow so the brand cue stays without sacrificing legibility.
+
+:focus-visible {
+  outline: 2px solid $body-color;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba($link-color, 0.35);
+}
+
+// ---- Code -------------------------------------------------------------------
+
+pre, code, kbd, samp {
+  font-family: $font-family-monospace;
+}
+
+pre {
+  border: 1px solid $border-color;
+  border-radius: $pequod-radius;
+  padding: 0.7em 0.9em;
+  background: $pre-bg;
+}
+
+p > code, li > code, td > code {
+  background: $code-bg;
+  color: $code-color;
+  padding: 0.05em 0.35em;
+  border-radius: $pequod-radius-sm;
+}
+
+// ---- Blockquote ------------------------------------------------------------
+
+blockquote {
+  border-left: 4px solid $blockquote-border-color;
+  padding: 0.55em 0.95em;
+  background: $blockquote-bg;
+  color: $headings-color;
+  font-style: italic;
+  border-radius: 0 $pequod-radius $pequod-radius 0;
+}
+
+// ---- Tables ----------------------------------------------------------------
+
+table.table {
+  thead th {
+    background: $surface-alt;
+    color: $headings-color;
+    border-bottom: 2px solid $border-color;
+    font-weight: 600;
+  }
+
+  tbody tr:nth-of-type(odd) {
+    background: $table-stripe;
+  }
+}
+
+// ---- Callouts (Quarto core CSS uses .callout-header AND .callout-title) ----
+// !important required: Quarto core CSS loads after theme SCSS, no other
+// reliable hook (upstream issue still open as of 1.9.x).
+
+div.callout.callout-style-default {
+  border: 1px solid $border-color !important;
+  border-left-width: 4px !important;
+  border-radius: $pequod-radius;
+}
+
+// Note — Starbuck (blue): the rational first mate, neutral information
+div.callout.callout-note,
+div.callout-note.callout {
+  border-left-color: $starbuck !important;
+}
+div.callout.callout-note .callout-header,
+div.callout-note .callout-header,
+div.callout.callout-note .callout-title,
+div.callout-note .callout-title {
+  background-color: rgba($starbuck, 0.12) !important;
+}
+
+// Tip — Tashtego (green): woods, growth
+div.callout.callout-tip,
+div.callout-tip.callout {
+  border-left-color: $tashtego !important;
+}
+div.callout.callout-tip .callout-header,
+div.callout-tip .callout-header,
+div.callout.callout-tip .callout-title,
+div.callout-tip .callout-title {
+  background-color: rgba($tashtego, 0.12) !important;
+}
+
+// Warning — Stubb (orange): pipe and flame
+div.callout.callout-warning,
+div.callout-warning.callout {
+  border-left-color: $stubb !important;
+}
+div.callout.callout-warning .callout-header,
+div.callout-warning .callout-header,
+div.callout.callout-warning .callout-title,
+div.callout-warning .callout-title {
+  background-color: rgba($stubb, 0.12) !important;
+}
+
+// Caution — Pip (warm dark yellow / dark gold): the lost cabin boy
+div.callout.callout-caution,
+div.callout-caution.callout {
+  border-left-color: $pip !important;
+}
+div.callout.callout-caution .callout-header,
+div.callout-caution .callout-header,
+div.callout.callout-caution .callout-title,
+div.callout-caution .callout-title {
+  background-color: rgba($pip, 0.15) !important;
+}
+
+// Important — Ahab (red): the wound; reserved stop signal
+div.callout.callout-important,
+div.callout-important.callout {
+  border-left-color: $danger !important;
+}
+div.callout.callout-important .callout-header,
+div.callout-important .callout-header,
+div.callout.callout-important .callout-title,
+div.callout-important .callout-title {
+  background-color: rgba($danger, 0.10) !important;
+}
+
+// ---- Reduced motion --------------------------------------------------------
+// Disables theme smooth-scroll. Bootstrap 5 already emits component-level
+// reduced-motion clamps via $enable-reduced-motion. A wider `html *`
+// selector inside this @media block triggers a Quarto post-process
+// CSS-vars analyser bug; keep the selector narrow.
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
+// ---- Print -----------------------------------------------------------------
+// Drop site chrome, print external URLs after each link, strip surface
+// fills so toner usage stays sane, keep figures / headings / tables from
+// breaking across pages.
+
+@media print {
+  .navbar,
+  .sidebar,
+  .quarto-sidebar-toc,
+  #quarto-margin-sidebar,
+  .nav-footer,
+  .quarto-back-to-top,
+  .quarto-search,
+  .quarto-secondary-nav,
+  .toc-actions {
+    display: none !important;
+  }
+
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 11pt;
+  }
+
+  main, .content, article, .quarto-document-content {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  main a[href^="http"]:not([href*="localhost"]):not(.citation):not(.no-underline)::after {
+    content: " (" attr(href) ")";
+    color: #5B6470;
+    font-size: 0.85em;
+    text-decoration: none;
+  }
+
+  pre {
+    background: transparent !important;
+    border: 1px solid #B3BBC4 !important;
+    page-break-inside: avoid;
+  }
+
+  code:not(pre code) {
+    background: transparent;
+    border: 1px solid $border-color;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+
+  figure, .quarto-figure, table {
+    page-break-inside: avoid;
+  }
+}

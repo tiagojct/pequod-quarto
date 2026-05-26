@@ -1,0 +1,64 @@
+name: render-examples
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Install the Atkinson Hyperlegible Next + Mono TTFs at the
+      # system font level. Typst <= 0.14 reads `font-paths` from the
+      # extension dir, but Pandoc/Quarto's pdf-via-typst still consults
+      # the system font set for fallback metrics — having them
+      # installed avoids spurious "font not found" warnings in the log.
+      - name: Install bundled TTFs
+        run: |
+          mkdir -p ~/.local/share/fonts
+          cp _extensions/pequod/fonts/*.ttf ~/.local/share/fonts/
+          fc-cache -f -v
+          fc-list | grep -i "Atkinson" || true
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: "1.7.32"
+
+      - name: Render reveal (light)
+        run: quarto render example.qmd
+
+      - name: Render reveal (dark)
+        run: quarto render example-dark.qmd
+
+      - name: Render html
+        run: quarto render example-html.qmd
+
+      - name: Render typst PDF
+        run: quarto render example-typst.qmd
+
+      - name: Sanity-check outputs exist
+        run: |
+          test -f example.html
+          test -f example-dark.html
+          test -f example-html.html
+          test -f example-typst.pdf
+
+      - name: Upload artefacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rendered-examples
+          path: |
+            example.html
+            example-dark.html
+            example-html.html
+            example-typst.pdf
+            example_files/
+            example-dark_files/
+            example-html_files/
+          if-no-files-found: warn

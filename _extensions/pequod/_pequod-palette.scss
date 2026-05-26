@@ -1,6 +1,7 @@
 // =============================================================================
 // Pequod — design tokens (Sass partial, no Quarto section markers)
-// Imported from pequod.scss (light) / pequod-dark.scss / pequod-html.scss.
+// Imported from pequod.scss (light) / pequod-dark.scss / pequod-html.scss
+// / pequod-html-dark.scss.
 // =============================================================================
 
 // ---- Log scale (warm paper → deep ink) --------------------------------------
@@ -37,6 +38,55 @@ $stubb-dark:    #FFD9BB !default;
 $tashtego-dark: #82C4A2 !default;
 $daggoo-dark:   #A17069 !default;
 
+// ---- Semantic — danger (alerts, callout-important) -------------------------
+// One slot reserved for the universal "stop" signal. Ahab carries the
+// brand-level red elsewhere; danger stays close to him but slightly hotter
+// in dark mode so it keeps ≥4.5:1 against the deep-ink surface. Hex
+// literals inlined for the same reason as the chart palette below.
+$danger-light: #A83732 !default;  // ahab
+$danger-dark:  #F47A6E !default;
+
+// ---- Ink-on-anchor — constant across modes ---------------------------------
+// Some anchor surfaces (e.g. log-200 selection in light mode, log-700
+// selection in dark mode) need a fixed-contrast text colour that does NOT
+// flip with the dark/light toggle. Otherwise the body-text token inverts
+// to near-white and lands on a surface that also lightened, collapsing
+// contrast. Pin literal hex values.
+$ink-on-paper: #0B1720 !default;  // near-black; rides on warm paper surfaces
+$ink-on-ink:   #F7F3EE !default;  // warm paper; rides on deep-ink surfaces
+
 // ---- Font stacks ------------------------------------------------------------
 $font-family-sans-serif: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif !default;
 $font-family-monospace:  "Atkinson Hyperlegible Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace !default;
+
+// ---- Radii ------------------------------------------------------------------
+$pequod-radius-sm: 3px !default;
+$pequod-radius:    4px !default;
+
+// ---- Data-viz palette — light ----------------------------------------------
+// Eight categorical slots, ordered so the first colours seen are also the
+// most legible against a warm-paper background. Drawn from the crew so a
+// chart sits inside the same colour grammar as the prose. Pairs with the
+// dark variant below; the active set is exported as --pequod-chart-* in
+// each theme entry's :root. Hex literals inlined (rather than aliased to
+// $ahab-light / $starbuck-light / etc.) so Sass does not emit
+// "variable used before declaration" warnings when the partial is
+// re-imported across multiple theme entries in Quarto's stack.
+$pequod-chart-1-light: #0D2F42 !default;  // log-800
+$pequod-chart-2-light: #0082B1 !default;  // starbuck
+$pequod-chart-3-light: #A83732 !default;  // ahab
+$pequod-chart-4-light: #177C55 !default;  // tashtego
+$pequod-chart-5-light: #CA6435 !default;  // stubb
+$pequod-chart-6-light: #253E82 !default;  // queequeg
+$pequod-chart-7-light: #6A4A00 !default;  // pip
+$pequod-chart-8-light: #552823 !default;  // daggoo
+
+// ---- Data-viz palette — dark -----------------------------------------------
+$pequod-chart-1-dark: #EAE1D7 !default;  // log-100
+$pequod-chart-2-dark: #A6DFFF !default;  // starbuck-dark
+$pequod-chart-3-dark: #E3877C !default;  // ahab-dark
+$pequod-chart-4-dark: #82C4A2 !default;  // tashtego-dark
+$pequod-chart-5-dark: #FFD9BB !default;  // stubb-dark
+$pequod-chart-6-dark: #838CCF !default;  // queequeg-dark
+$pequod-chart-7-dark: #DEC577 !default;  // pip-dark
+$pequod-chart-8-dark: #A17069 !default;  // daggoo-dark

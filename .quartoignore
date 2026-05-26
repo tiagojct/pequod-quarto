@@ -8,12 +8,16 @@ LICENSE-CC-BY-4.0
 example.qmd
 example-dark.qmd
 example-html.qmd
+example-typst.qmd
 example_files/
 example-dark_files/
 example-html_files/
+example-typst_files/
 example.html
 example-dark.html
 example-html.html
+example.pdf
+example-typst.pdf
 scripts/
 .gitignore
 .quartoignore

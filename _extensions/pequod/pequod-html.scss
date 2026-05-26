@@ -2,7 +2,7 @@
 
 // =============================================================================
 // Pequod — light mode (Quarto HTML / Bootstrap theme entry)
-// Same tokens as the reveal.js entry, mapped to Bootstrap variables.
+// Tokens shared with the reveal.js entry; same active aliases per crew.
 // =============================================================================
 
 @import "pequod-palette";
@@ -17,19 +17,25 @@ $stubb:    $stubb-light    !default;
 $tashtego: $tashtego-light !default;
 $daggoo:   $daggoo-light   !default;
 
+$danger:   $danger-light   !default;
+
+// ---- Surface & text ---------------------------------------------------------
+$surface:      $log-100 !default;
+$surface-alt:  $log-150 !default;
+$table-stripe: $log-100 !default;
+
 // ---- Bootstrap surfaces -----------------------------------------------------
-$body-bg:       $log-50  !default;
-$body-color:    $log-800 !default;
+$body-bg:        $log-50  !default;
+$body-color:     $log-800 !default;
 $headings-color: $log-700 !default;
-$border-color:  $log-150 !default;
+$border-color:   $log-150 !default;
 
 $link-color:        $starbuck !default;
 $link-hover-color:  $queequeg !default;
 $link-decoration:   underline !default;
 
 // ---- Bootstrap typography ---------------------------------------------------
-$font-family-base:      "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif !default;
-$font-family-monospace: "Atkinson Hyperlegible Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace !default;
+$font-family-base:      $font-family-sans-serif !default;
 $font-size-base:        1rem !default;
 $line-height-base:      1.55 !default;
 
@@ -45,42 +51,29 @@ $code-bg:                  $log-100 !default;
 $pre-color:                $log-800 !default;
 $pre-bg:                   $log-100 !default;
 $blockquote-border-color:  $log-400 !default;
+$blockquote-bg:            $log-100 !default;
 $table-border-color:       $log-150 !default;
+
+// ---- Bootstrap border-radius mapping ----------------------------------------
+$border-radius:    $pequod-radius    !default;
+$border-radius-sm: $pequod-radius-sm !default;
 
 /*-- scss:rules --*/
 
 @import "pequod-fonts";
+@import "pequod-html-rules";
 
-body {
-  font-feature-settings: "kern", "liga";
-}
+// ---- Data-viz palette — CSS custom properties on :root ---------------------
+// Lets Observable / htmlwidgets / plain JS pick up the institutional chart
+// hues at runtime via getComputedStyle(...).getPropertyValue('--pequod-chart-N').
 
-pre, code, kbd, samp { font-family: $font-family-monospace; }
-
-pre {
-  border: 1px solid $border-color;
-  border-radius: 4px;
-  padding: 0.7em 0.9em;
-  background: $pre-bg;
-}
-
-p > code, li > code, td > code {
-  background: $code-bg;
-  color: $code-color;
-  padding: 0.05em 0.35em;
-  border-radius: 3px;
-}
-
-blockquote {
-  border-left: 4px solid $blockquote-border-color;
-  padding: 0.55em 0.95em;
-  background: $log-100;
-  color: $log-700;
-  font-style: italic;
-  border-radius: 0 4px 4px 0;
-}
-
-a {
-  text-decoration-color: rgba($link-color, 0.45);
-  text-underline-offset: 0.15em;
+:root {
+  --pequod-chart-1: #{$pequod-chart-1-light};
+  --pequod-chart-2: #{$pequod-chart-2-light};
+  --pequod-chart-3: #{$pequod-chart-3-light};
+  --pequod-chart-4: #{$pequod-chart-4-light};
+  --pequod-chart-5: #{$pequod-chart-5-light};
+  --pequod-chart-6: #{$pequod-chart-6-light};
+  --pequod-chart-7: #{$pequod-chart-7-light};
+  --pequod-chart-8: #{$pequod-chart-8-light};
 }

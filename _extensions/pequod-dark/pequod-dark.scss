@@ -17,6 +17,8 @@ $stubb:    $stubb-dark    !default;
 $tashtego: $tashtego-dark !default;
 $daggoo:   $daggoo-dark   !default;
 
+$danger:   $danger-dark   !default;
+
 // ---- Surface & text — deep ink ---------------------------------------------
 $body-bg:       $log-950 !default;
 $body-color:    $log-100 !default;
@@ -24,6 +26,10 @@ $surface:       $log-900 !default;
 $surface-alt:   $log-800 !default;
 $border-color:  $log-800 !default;
 $heading-color: $log-200 !default;
+
+// ---- Highlight pill --------------------------------------------------------
+$highlight-bg:    $log-700 !default;
+$highlight-color: $log-50  !default;
 
 // ---- Links ------------------------------------------------------------------
 $link-color:       $starbuck !default;

@@ -1,9 +1,12 @@
 title: Pequod
 author: Tiago Jacinto
-version: 0.2.0
+version: 0.3.0
 quarto-required: ">=1.4.0"
 contributes:
   formats:
+    common:
+      filters:
+        - pequod.lua
     revealjs:
       theme: pequod.scss
       highlight-style: pequod.theme
@@ -14,7 +17,49 @@ contributes:
       mainfont: "Atkinson Hyperlegible Next"
       monofont: "Atkinson Hyperlegible Mono"
     html:
-      theme: pequod-html.scss
-      highlight-style: pequod.theme
+      # HTML dark-mode toggle. Quarto compiles both stylesheets and
+      # scopes the dark variant under [data-bs-theme="dark"]; the user
+      # gets a toggle on the navbar when theme-toggle: true.
+      theme:
+        light: pequod-html.scss
+        dark:  pequod-html-dark.scss
+      highlight-style:
+        light: pequod.theme
+        dark:  pequod-dark.theme
       mainfont: "Atkinson Hyperlegible Next"
       monofont: "Atkinson Hyperlegible Mono"
+      code-copy: true
+      code-overflow: wrap
+      smooth-scroll: true
+      anchor-sections: true
+      link-external-newwindow: true
+      link-external-icon: false
+      fig-cap-location: bottom
+      tbl-cap-location: top
+    typst:
+      papersize: a4
+      mainfont: "Atkinson Hyperlegible Next"
+      sansfont: "Atkinson Hyperlegible Next"
+      monofont: "Atkinson Hyperlegible Mono"
+      # Quarto's Typst template reads `codefont:` (not `monofont:`) for
+      # raw/code blocks. Without this key set explicitly, Typst falls
+      # back to its hardcoded DejaVu Sans Mono. Both kept for forward
+      # compatibility.
+      codefont: "Atkinson Hyperlegible Mono"
+      fontsize: 11pt
+      margin:
+        x: 2.5cm
+        y: 2.5cm
+      number-sections: false
+      toc: true
+      toc-depth: 3
+      # Static-weight TTFs shipped under fonts/. Typst <= 0.14 does not
+      # support variable fonts; without these paths set Typst would
+      # warn on every render and fall back to its built-in defaults.
+      # `font-paths` is relative to the extension dir, so it resolves
+      # correctly under Quarto's org-prefixed install
+      # (`_extensions/tiagojct/pequod/fonts`).
+      font-paths:
+        - fonts
+      include-in-header:
+        - pequod-typst.typ

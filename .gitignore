@@ -6,6 +6,11 @@ example-html_files/
 example.html
 example-dark.html
 example-html.html
+example-typst.html
+example-typst_files/
 *.tex
-*.pdf
+
+# Rendered PDFs sit at the repo root but the Typst static-weight TTFs
+# under _extensions/pequod/fonts/ must NOT be swept up by a *.ttf rule.
+/*.pdf
 .DS_Store

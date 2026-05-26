@@ -1,0 +1,84 @@
+/*-- scss:defaults --*/
+
+// =============================================================================
+// Pequod — dark mode (Quarto HTML / Bootstrap theme entry)
+// Mirror of pequod-html.scss with the palette inverted for deep-ink ground.
+// =============================================================================
+
+@import "pequod-palette";
+
+// ---- Active crew aliases (dark) --------------------------------------------
+$ahab:     $ahab-dark     !default;
+$starbuck: $starbuck-dark !default;
+$queequeg: $queequeg-dark !default;
+$pip:      $pip-dark      !default;
+$ishmael:  $ishmael-dark  !default;
+$stubb:    $stubb-dark    !default;
+$tashtego: $tashtego-dark !default;
+$daggoo:   $daggoo-dark   !default;
+
+$danger:   $danger-dark   !default;
+
+// ---- Bootstrap dark-mode flag ----------------------------------------------
+// Quarto flips data-bs-theme="dark" on <html> at runtime when the user
+// toggles the dark variant. With this flag set, Bootstrap emits its own
+// component-level dark tokens under that attribute so form controls,
+// dropdowns, etc. follow without manual overrides.
+$enable-dark-mode: true !default;
+
+// ---- Surface & text (deep ink) ---------------------------------------------
+$surface:      $log-900 !default;
+$surface-alt:  $log-800 !default;
+$table-stripe: $log-900 !default;
+
+// ---- Bootstrap surfaces -----------------------------------------------------
+$body-bg:        $log-950 !default;
+$body-color:     $log-100 !default;
+$headings-color: $log-200 !default;
+$border-color:   $log-800 !default;
+
+$link-color:       $starbuck !default;
+$link-hover-color: $queequeg !default;
+$link-decoration:  underline !default;
+
+// ---- Bootstrap typography ---------------------------------------------------
+$font-family-base: $font-family-sans-serif !default;
+$font-size-base:   1rem !default;
+$line-height-base: 1.55 !default;
+
+$h1-font-size: 2.25rem !default;
+$h2-font-size: 1.75rem !default;
+$h3-font-size: 1.35rem !default;
+$h4-font-size: 1.1rem  !default;
+$headings-font-weight: 600 !default;
+
+// ---- Bootstrap code & blockquote --------------------------------------------
+$code-color:              $daggoo  !default;
+$code-bg:                 $log-900 !default;
+$pre-color:               $log-100 !default;
+$pre-bg:                  $log-900 !default;
+$blockquote-border-color: $log-500 !default;
+$blockquote-bg:           $log-900 !default;
+$table-border-color:      $log-800 !default;
+
+// ---- Bootstrap border-radius mapping ----------------------------------------
+$border-radius:    $pequod-radius    !default;
+$border-radius-sm: $pequod-radius-sm !default;
+
+/*-- scss:rules --*/
+
+@import "pequod-fonts";
+@import "pequod-html-rules";
+
+// ---- Data-viz palette — CSS custom properties on :root ---------------------
+
+:root {
+  --pequod-chart-1: #{$pequod-chart-1-dark};
+  --pequod-chart-2: #{$pequod-chart-2-dark};
+  --pequod-chart-3: #{$pequod-chart-3-dark};
+  --pequod-chart-4: #{$pequod-chart-4-dark};
+  --pequod-chart-5: #{$pequod-chart-5-dark};
+  --pequod-chart-6: #{$pequod-chart-6-dark};
+  --pequod-chart-7: #{$pequod-chart-7-dark};
+  --pequod-chart-8: #{$pequod-chart-8-dark};
+}
