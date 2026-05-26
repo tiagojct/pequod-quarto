@@ -1,5 +1,8 @@
 /.quarto/
 /_freeze/
+docs/.quarto/
+docs/_site/
+docs/_freeze/
 example_files/
 example-dark_files/
 example-html_files/

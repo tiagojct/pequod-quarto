@@ -1,0 +1,76 @@
+---
+title: "Install"
+---
+
+## From an existing Quarto project
+
+```sh
+quarto add tiagojct/pequod-quarto
+```
+
+This drops the extension under `_extensions/tiagojct/pequod/` and
+`_extensions/tiagojct/pequod-dark/`. Quarto's resolver honours the
+org-prefixed install path automatically.
+
+## Scaffold a new deck from the template
+
+```sh
+quarto use template tiagojct/pequod-quarto
+```
+
+You land on a minimal `template.qmd` already configured for
+`pequod-revealjs`.
+
+## Pin a version
+
+Releases are tagged. Pin in CI or for reproducibility:
+
+```sh
+quarto add tiagojct/pequod-quarto@v0.3.0
+```
+
+Check the [CHANGELOG](https://github.com/tiagojct/pequod-quarto/blob/main/CHANGELOG.md)
+for what each release adds.
+
+## Update
+
+```sh
+quarto update tiagojct/pequod-quarto
+```
+
+## Uninstall
+
+```sh
+quarto remove tiagojct/pequod-quarto
+```
+
+## Known issues
+
+::: {.callout-warning}
+**Single-file render under org-prefixed install.** Quarto's resolver
+has a known bug where
+`quarto render subdir/chapter.qmd --to pequod-html` may fail to find
+the extension when installed at `_extensions/<org>/<name>/`.
+Workarounds: render project-wide (`quarto render`), or flatten the
+extension path to `_extensions/<name>/` for that project.
+:::
+
+::: {.callout-warning}
+**Typst PDF requires the bundled TTFs.** The extension ships
+static-weight Atkinson Hyperlegible Next + Mono TTFs under
+`_extensions/pequod/fonts/`. If you remove that directory, Typst
+falls back to its built-in defaults (Libertinus Serif + DejaVu Sans
+Mono) and the visual identity collapses.
+:::
+
+::: {.callout-warning}
+**`pequod-html` dark mode requires `theme-toggle: true`.** Set it in
+your project's `_quarto.yml` to surface the navbar control that flips
+between the light and dark stylesheets:
+
+```yaml
+format:
+  pequod-html:
+    theme-toggle: true
+```
+:::

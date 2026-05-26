@@ -1,0 +1,88 @@
+---
+title: "Formats"
+---
+
+The extension contributes four Quarto formats. Each one is selected
+by name in the `format:` key of a `.qmd` frontmatter or a project
+`_quarto.yml`. All four formats share the same palette tokens, font
+stacks, and syntax-highlighting mapping — switching formats does not
+mean re-learning the visual language.
+
+## `pequod-revealjs` — slide decks (light)
+
+```yaml
+---
+title: "Your title"
+format: pequod-revealjs
+---
+```
+
+Defaults that ship: 1600 × 900 surface, `center: true` (slides
+vertically centred by reveal), `slide-number: c/t`, Atkinson
+Hyperlegible Next body, Atkinson Hyperlegible Mono code. Per-slide
+opt-outs:
+
+```markdown
+## A photo wall {.no-footer .no-logo}
+```
+
+The deck title slide and H1 section dividers already have the footer
+and logo hidden by convention.
+
+## `pequod-dark-revealjs` — slide decks (dark)
+
+```yaml
+format: pequod-dark-revealjs
+```
+
+Same shape as the light variant, deep-ink ground, paper-tone text,
+dark crew accents.
+
+## `pequod-html` — documents (light + dark)
+
+```yaml
+format:
+  pequod-html:
+    theme-toggle: true   # surfaces the navbar light/dark control
+```
+
+What's wired by default:
+
+- `theme: { light: pequod-html.scss, dark: pequod-html-dark.scss }`
+- `highlight-style: { light: pequod.theme, dark: pequod-dark.theme }`
+- `code-copy: true`, `code-overflow: wrap`
+- `smooth-scroll: true`, `anchor-sections: true`
+- `link-external-newwindow: true` (external links open new tab)
+- `fig-cap-location: bottom`, `tbl-cap-location: top`
+
+Print stylesheet built in: hides navbar / sidebar / TOC / footer,
+prints `(href)` after external links, strips surface fills, prevents
+page breaks inside headings / figures / tables.
+
+## `pequod-typst` — PDF output
+
+```yaml
+format: pequod-typst
+```
+
+What's wired by default:
+
+- A4 paper, 2.5 cm margins
+- `mainfont: "Atkinson Hyperlegible Next"`,
+  `monofont: "Atkinson Hyperlegible Mono"`,
+  `codefont: "Atkinson Hyperlegible Mono"` (Quarto's Typst template
+  reads `codefont`, not `monofont`, for `show raw`)
+- `font-paths: [fonts]` relative to the extension dir so the
+  bundled static-weight TTFs load under the org-prefixed install
+- `pequod-typst.typ` include that overrides Quarto's default
+  `#callout(...)` to remap Bootstrap colours to the crew
+
+Crew → callout colour mapping (identical across HTML / reveal / Typst):
+
+| Callout | Crew | Hue |
+|---|---|---|
+| `note` | Starbuck | blue |
+| `tip` | Tashtego | green |
+| `warning` | Stubb | orange |
+| `caution` | Pip | warm dark yellow |
+| `important` | Ahab (danger) | red |

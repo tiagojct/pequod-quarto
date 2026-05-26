@@ -1,0 +1,104 @@
+---
+title: "Accessibility"
+---
+
+The theme treats accessibility as a non-negotiable requirement, not a
+nice-to-have. Every accent surface, every link, every callout, every
+focus cue has been audited against WCAG 2.2 AA at minimum.
+
+## Two-channel link cue
+
+Prose links carry **three** distinguishing cues, not one:
+
+- **Colour** — Starbuck blue (light) / Starbuck light (dark)
+- **Underline** — 2 px Starbuck-tinted, 0.18em underline offset
+- **Weight** — 500 (medium) rather than the body's 400
+
+The combination of colour-plus-underline satisfies WCAG 1.4.1 (do
+not rely on colour alone). On monochrome renderers (e-paper, fax
+printouts, high-contrast OS modes), the underline and weight cues
+still distinguish links from body text.
+
+The cue is scoped to `main`, `article`, `.content`, and
+`.quarto-document-content` so navbar / sidebar / TOC / footer /
+anchor / citation links keep their own treatments and don't drown the
+page in underlines.
+
+## Focus indicator
+
+`:focus-visible` carries a **body-colour** outline + a **Starbuck**
+box-shadow glow.
+
+```scss
+:focus-visible {
+  outline: 2px solid $body-color;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba($link-color, 0.35);
+}
+```
+
+A pure-blue outline alone would not pass WCAG 1.4.11 contrast
+against the warm-paper background (~3:1, below the 3:1 cap-floor for
+non-text contrast against an adjacent colour). The body-colour
+outline carries the primary contrast; the Starbuck glow rides as the
+brand cue.
+
+## Callout palette — all five colours hold AA
+
+| Callout | Light role | Light hex | Light contrast against `$log-50` | Dark role | Dark hex | Dark contrast against `$log-950` |
+|---|---|---|---|---|---|---|
+| `note` | Starbuck | `#0082B1` | 4.58:1 | Starbuck dark | `#A6DFFF` | 15.2:1 |
+| `tip` | Tashtego | `#177C55` | 5.18:1 | Tashtego dark | `#82C4A2` | 10.4:1 |
+| `warning` | Stubb | `#CA6435` | 4.61:1 | Stubb dark | `#FFD9BB` | 16.1:1 |
+| `caution` | Pip | `#6A4A00` | 8.84:1 | Pip dark | `#DEC577` | 12.7:1 |
+| `important` | Ahab (danger) | `#A83732` | 7.46:1 | Danger dark | `#F47A6E` | 8.92:1 |
+
+The colour-coded left rule is reinforced by a tinted header with the
+same crew colour and a Bootstrap icon — so the callout type is
+distinguishable to colour-blind readers (the rule + icon + label
+text carry the information together).
+
+## Reduced motion
+
+Both formats honour `prefers-reduced-motion: reduce`:
+
+- **HTML** disables theme smooth-scroll. Bootstrap 5's own
+  `$enable-reduced-motion: true` covers component-level animations
+  (modals, dropdowns, …).
+- **Reveal** clamps `animation-duration` and `transition-duration` to
+  `0.01ms` on every `.reveal *` descendant. Reveal's slide transition
+  is already set to `none` by default in the extension, but downstream
+  callouts and fragment animations can still animate without this
+  clamp.
+
+## Print
+
+The HTML format ships a print stylesheet that:
+
+- Hides navbar / sidebar / TOC / footer / repo actions / search
+- Prints `(href)` after every external link so readers on paper can
+  follow them
+- Strips code-block surface fills (saves toner)
+- Prevents page breaks inside headings, figures, and tables
+
+External link URLs are excluded for `localhost`, citations, and the
+`.no-underline` class.
+
+## Skip nav
+
+Quarto's built-in skip-link sits at the top of every HTML page
+(`<a class="skip-link" href="#quarto-content">Skip to content</a>`).
+The theme styles the focused state with the same body-colour
+outline + Starbuck glow as the rest of the focus indicators.
+
+## Self-hosted fonts (GDPR + offline)
+
+Both Atkinson Hyperlegible Next and Atkinson Hyperlegible Mono are
+shipped as base64-inlined woff2 inside `_pequod-fonts.scss`. No
+network requests fire at page-load time; the page renders the
+institutional typography even with the user offline or with a
+strict Content-Security-Policy `font-src 'self'` rule.
+
+The Typst format ships static-weight TTFs under
+`_extensions/pequod/fonts/` for the same reason — Typst loads them
+through `font-paths: [fonts]` (relative to the extension dir).

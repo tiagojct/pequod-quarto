@@ -1,0 +1,50 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - "*.qmd"
+
+website:
+  title: "pequod-quarto"
+  description: "A Quarto extension that ships the Pequod palette across reveal, html, and typst."
+  repo-url: https://github.com/tiagojct/pequod-quarto
+  repo-actions: [edit, issue]
+  page-navigation: true
+
+  navbar:
+    left:
+      - href: index.qmd
+        text: "Pequod"
+      - href: install.qmd
+        text: "Install"
+      - href: formats.qmd
+        text: "Formats"
+      - href: customise.qmd
+        text: "Customise"
+      - href: data-viz.qmd
+        text: "Data viz"
+      - href: accessibility.qmd
+        text: "Accessibility"
+    right:
+      - icon: github
+        href: https://github.com/tiagojct/pequod-quarto
+
+  sidebar:
+    style: docked
+    search: true
+    contents:
+      - index.qmd
+      - install.qmd
+      - formats.qmd
+      - customise.qmd
+      - data-viz.qmd
+      - accessibility.qmd
+
+format:
+  # Dogfood the extension on its own documentation site. theme-toggle
+  # surfaces the navbar control that flips data-bs-theme between light
+  # and dark.
+  pequod-html:
+    theme-toggle: true
+    toc: true
+    toc-depth: 3

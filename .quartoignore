@@ -19,5 +19,9 @@ example-html.html
 example.pdf
 example-typst.pdf
 scripts/
+docs/
+.github/
+CHANGELOG.md
+CONTRIBUTING.md
 .gitignore
 .quartoignore

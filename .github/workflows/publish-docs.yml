@@ -1,0 +1,45 @@
+name: publish-docs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "_extensions/**"
+      - ".github/workflows/publish-docs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Same TTF install as render-examples.yml so the documentation
+      # site renders with the institutional typography in CI.
+      - name: Install bundled TTFs
+        run: |
+          mkdir -p ~/.local/share/fonts
+          cp _extensions/pequod/fonts/*.ttf ~/.local/share/fonts/
+          fc-cache -f -v
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: "1.7.32"
+
+      - name: Render docs
+        working-directory: docs
+        run: quarto render
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/_site
+          publish_branch: gh-pages
+          force_orphan: true

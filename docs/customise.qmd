@@ -1,0 +1,123 @@
+---
+title: "Customise"
+---
+
+## Override a single token
+
+Every token in `_pequod-palette.scss` is declared with `!default`,
+so any earlier declaration with the same name wins. Drop a tiny SCSS
+overrides file into your project and prepend it to the theme list:
+
+```scss
+// my-overrides.scss
+/*-- scss:defaults --*/
+
+// Crank Starbuck's link colour darker for a print-leaning publication.
+$starbuck-light: #00658E !default;
+
+// Or shift the log-50 paper towards a colder white.
+$log-50: #F5F2EC !default;
+```
+
+Wire it in:
+
+```yaml
+format:
+  pequod-revealjs:
+    theme:
+      - my-overrides.scss
+      - default
+```
+
+The `default` line keeps Quarto's `default` theme participating; the
+extension's own SCSS is added by Quarto automatically.
+
+## Replace the body / mono fonts
+
+The font stacks are themselves `!default` tokens. Override in
+`my-overrides.scss`:
+
+```scss
+$font-family-sans-serif: "IBM Plex Sans", system-ui, sans-serif !default;
+$font-family-monospace:  "JetBrains Mono", ui-monospace, monospace !default;
+```
+
+If you replace the body font, you almost certainly also want to swap
+the `mainfont:` / `monofont:` YAML keys so reveal and Typst pick the
+same family up:
+
+```yaml
+format:
+  pequod-revealjs:
+    theme:
+      - my-overrides.scss
+    mainfont: "IBM Plex Sans"
+    monofont: "JetBrains Mono"
+```
+
+Self-hosted woff2 fonts can be wired with Quarto's standard
+`@font-face` recipe in your own `include-in-header` partial.
+
+## Recolour the data-viz palette
+
+Eight categorical chart slots live in `_pequod-palette.scss` as
+`$pequod-chart-1..8-light` / `…-dark`. Override individual slots:
+
+```scss
+// my-overrides.scss
+$pequod-chart-1-light: #2A2A2A !default;   // softer black for the
+                                           // primary series
+```
+
+The active set is exported as `--pequod-chart-1..8` CSS custom
+properties on `:root` so Observable / htmlwidgets / plain JS can
+pick them up at runtime. See [Data viz](data-viz.qmd) for usage.
+
+## Add a logo (once, used everywhere)
+
+The bundled `pequod.lua` filter forwards a single `pequod.logo`
+metadata key to the format-specific keys that Quarto / Reveal consume.
+Set in your project `_quarto.yml`:
+
+```yaml
+pequod:
+  logo: assets/logo.svg
+```
+
+The filter writes to `meta.logo` (reveal), `meta.website.navbar.logo`
+(websites) and `meta.book.navbar.logo` (books), but only if the user
+has not already set them.
+
+## Add an Open Graph card image
+
+Same filter, same key shape:
+
+```yaml
+pequod:
+  og-image: assets/og-card.png
+```
+
+The filter resolves `og:image` in this order: `pequod.og-image` →
+`website.open-graph.image` → per-page `og-image`. Twitter Card
+upgrades to `summary_large_image` when an image is set.
+
+## Per-slide opt-outs (reveal)
+
+Quarto markdown's curly attribute syntax carries through:
+
+```markdown
+## A photo wall {.no-footer .no-logo}
+```
+
+The deck title slide and H1 section dividers already hide the footer
+and logo by convention. `.no-footer` / `.no-logo` only need to be
+added on body slides where the corner mark would clash with the
+content.
+
+## Highlight pill
+
+Spans marked with `.highlight` or `<mark>` get a warm-paper-deep
+background in light mode and a deep-paper-light background in dark
+mode. Both `$highlight-bg` and `$highlight-color` are `!default`
+tokens; override per-mode in your `pequod.scss` / `pequod-dark.scss`
+overrides file.

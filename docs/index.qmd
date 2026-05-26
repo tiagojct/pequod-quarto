@@ -1,0 +1,57 @@
+---
+title: "Pequod for Quarto"
+subtitle: "Warm paper, deep ink, eight crew accents — across reveal, html, and typst"
+---
+
+A Quarto extension that applies the [Pequod palette](https://github.com/tiagojct/pequod)
+to slide decks, documents, and PDFs. Body and headings render in
+Atkinson Hyperlegible Next; code renders in Atkinson Hyperlegible Mono.
+Both fonts are bundled inside the theme — no Google Fonts CDN at render
+time, GDPR-clean, offline-renderable, cached once per site.
+
+## The four formats
+
+| Format | Use for | Surface |
+|---|---|---|
+| `pequod-revealjs` | Slide decks | Warm paper |
+| `pequod-dark-revealjs` | Slide decks | Deep ink |
+| `pequod-html` | Documents, reports, articles | Warm paper, dark variant via toggle |
+| `pequod-typst` | PDF output | Warm paper |
+
+Syntax highlighting in a slide matches syntax highlighting in a report
+matches syntax highlighting in a PDF, because all four formats share the
+same crew → role mapping:
+
+| Role | Crew | Light hex | Dark hex |
+|---|---|---|---|
+| Keyword | Ahab | `#A83732` | `#E3877C` |
+| Function | Starbuck | `#0082B1` | `#A6DFFF` |
+| Type | Queequeg | `#253E82` | `#838CCF` |
+| Number | Pip | `#6A4A00` | `#DEC577` |
+| Comment | Ishmael | `#76716B` | `#BFBBB6` |
+| Constant | Stubb | `#CA6435` | `#FFD9BB` |
+| String | Tashtego | `#177C55` | `#82C4A2` |
+| Variable | Daggoo | `#552823` | `#A17069` |
+
+## Quick look
+
+::: {.callout-note}
+This very documentation site is rendered with `pequod-html`. The
+theme-toggle in the navbar flips between the warm-paper and deep-ink
+variants — the toggle ships with the extension and works out of the
+box once `theme-toggle: true` is set in your project's `_quarto.yml`.
+:::
+
+```python
+# Inline code, code blocks, and tables all read the same register.
+import numpy as np
+
+def loss(theta: np.ndarray, x: np.ndarray, y: np.ndarray) -> float:
+    """Mean squared error for a linear model."""
+    return float(np.mean((x @ theta - y) ** 2))
+```
+
+> A whale-ship was my Yale College and my Harvard.
+
+See [Install](install.qmd) to pull the extension into your project, or
+[Formats](formats.qmd) for the per-format YAML knobs.

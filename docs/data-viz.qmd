@@ -1,0 +1,83 @@
+---
+title: "Data viz"
+---
+
+Eight categorical chart colours, drawn from the crew, ordered so the
+first colours seen are also the most legible against the active
+ground. The palette ships in two variants (light + dark) and the
+active set is exported as CSS custom properties on `:root`.
+
+## Slot table
+
+| Slot | Light hex | Dark hex | Crew |
+|---|---|---|---|
+| `--pequod-chart-1` | `#0D2F42` | `#EAE1D7` | log-800 / log-100 (deep ink ↔ warm paper) |
+| `--pequod-chart-2` | `#0082B1` | `#A6DFFF` | Starbuck |
+| `--pequod-chart-3` | `#A83732` | `#E3877C` | Ahab |
+| `--pequod-chart-4` | `#177C55` | `#82C4A2` | Tashtego |
+| `--pequod-chart-5` | `#CA6435` | `#FFD9BB` | Stubb |
+| `--pequod-chart-6` | `#253E82` | `#838CCF` | Queequeg |
+| `--pequod-chart-7` | `#6A4A00` | `#DEC577` | Pip |
+| `--pequod-chart-8` | `#552823` | `#A17069` | Daggoo |
+
+The first slot is anchored to the strongest body-text contrast in each
+mode — use it for the primary series and reach for slots 2..N in
+order for additional series. Charts with two series should use
+slots 1 + 2 (paper-vs-Starbuck), three series should add slot 3
+(Ahab), and so on.
+
+## Read the active set from JS
+
+```js
+const root = document.documentElement;
+const series = Array.from({ length: 8 }, (_, i) =>
+  getComputedStyle(root).getPropertyValue(`--pequod-chart-${i + 1}`).trim()
+);
+```
+
+The values flip automatically when the user toggles light / dark
+because the dark stylesheet redeclares the same custom properties
+under its own `:root`. Charts that pull from `getComputedStyle` at
+each render pick the new palette up without rerunning the layout
+pipeline.
+
+## Read from an Observable cell
+
+```js
+// Pull all eight slots into an array Observable can use as a scale.
+const pequod = Array.from({ length: 8 }, (_, i) =>
+  getComputedStyle(document.documentElement)
+    .getPropertyValue(`--pequod-chart-${i + 1}`)
+    .trim()
+);
+
+Plot.plot({
+  marks: [
+    Plot.barY(data, { x: "category", y: "value", fill: "category" })
+  ],
+  color: { range: pequod }
+})
+```
+
+## Read from R (knitr `results: asis`)
+
+Inject the active slot values into an R chunk via Quarto's HTML
+post-processing:
+
+```r
+# In a chunk that runs in the browser session (e.g. via reactable
+# or DT with a custom render hook), the same getComputedStyle call
+# applies. Server-side R cannot read CSS custom properties because
+# no DOM exists; for static R plots, hardcode the hex values from
+# the table above or read them from a YAML config you keep in sync
+# with _pequod-palette.scss.
+```
+
+## Restraint
+
+The eight slots are deliberate. Six of them carry strong crew
+identity; the seventh (Pip) is a warm dark yellow that doesn't read
+well as a primary series colour on the dark variant; the eighth
+(Daggoo) is a deep brown. Don't paint every series — most charts
+only need two or three slots. The point of a constrained palette is
+that the first colour a reader sees is always institutional.

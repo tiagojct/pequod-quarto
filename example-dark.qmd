@@ -12,16 +12,57 @@ A pigment-inspired palette rooted in *Moby-Dick*. Warm paper on one end,
 deep ink on the other, with eight accent hues named after the crew of the
 *Pequod*.
 
-> Call me Ishmael.
+> Call me Ishmael. Some years ago — never mind how long precisely — having
+> little or no money in my purse, and nothing particular to interest me on
+> shore, I thought I would sail about a little.
+
+## The crew, as colour
+
+- **Ahab** — red, keyword, the wound
+- **Starbuck** — blue, function, the steady mate
+- **Queequeg** — indigo, type, tattoo ink
+- **Pip** — warm dark yellow, number, child of the sun
+- **Ishmael** — grey, comment, the narrator
+- **Stubb** — orange, constant, pipe and flame
+- **Tashtego** — green, string, woods and moss
+- **Daggoo** — brown, variable, earth and mahogany
 
 ## A little code
 
 ```python
-def loss(theta, x, y):
+# fit a small model, the slow way
+import numpy as np
+
+def loss(theta: np.ndarray, x: np.ndarray, y: np.ndarray) -> float:
     """Mean squared error for a linear model."""
-    return ((x @ theta - y) ** 2).mean()
+    return float(np.mean((x @ theta - y) ** 2))
+
+theta = np.zeros(3)
+print(loss(theta, X, y))
 ```
 
+Inline code such as `loss(theta, X, y)` also picks up the Pequod register.
+
+## Tables, callouts, columns
+
+| Surface | Channel | Status |
+|---|---|---|
+| VS Code | Marketplace | live |
+| Tailwind | npm | live |
+| Quarto | this folder | new |
+
+::: {.columns}
+::: {.column width="50%"}
 ::: {.callout-note}
-This is the dark variant — ink ground, paper text, dark crew accents.
+Starbuck-blue note rule + tinted header. Same mapping in the light
+deck and HTML.
 :::
+:::
+::: {.column width="50%"}
+::: {.callout-important}
+Ahab-red rule — reserved for the universal stop signal.
+:::
+:::
+:::
+
+See <https://tiagojct.eu/projects/pequod/> for the full narrative.
