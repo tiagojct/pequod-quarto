@@ -28,7 +28,7 @@ jobs:
           cp _extensions/pequod/fonts/*.ttf ~/.local/share/fonts/
           fc-cache -f -v
 
-      - uses: quarto-dev/quarto-actions/setup@v2
+      - uses: quarto-dev/quarto-actions/setup@v2.2.0
         with:
           version: "1.7.32"
 

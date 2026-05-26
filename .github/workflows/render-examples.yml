@@ -25,7 +25,7 @@ jobs:
           fc-cache -f -v
           fc-list | grep -i "Atkinson" || true
 
-      - uses: quarto-dev/quarto-actions/setup@v2
+      - uses: quarto-dev/quarto-actions/setup@v2.2.0
         with:
           version: "1.7.32"
 
