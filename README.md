@@ -68,28 +68,31 @@ format: pequod-typst
 _extensions/
 ├── pequod/
 │   ├── _extension.yml
-│   ├── pequod.scss                    # revealjs entry (light)
-│   ├── pequod-html.scss               # html entry (light)
-│   ├── pequod-html-dark.scss          # html entry (dark)
+│   ├── pequod.scss                    # revealjs rules (rules-only)
+│   ├── pequod-html.scss               # html rules (rules-only)
+│   ├── pequod-variables.scss          # tokens (light) — theme entry
+│   ├── pequod-variables-dark.scss     # tokens (dark) — theme entry
 │   ├── pequod-typst.typ               # typst format
 │   ├── pequod.lua                     # logo + OG/Twitter meta filter
 │   ├── pequod.theme                   # Pandoc highlight (light)
 │   ├── pequod-dark.theme              # Pandoc highlight (dark)
-│   ├── _pequod-palette.scss           # shared design tokens
 │   ├── _pequod-fonts.scss             # @font-face (base64 woff2)
 │   ├── _pequod-revealjs-rules.scss    # shared reveal rules
 │   ├── _pequod-html-rules.scss        # shared html rules
 │   └── fonts/                         # source woff2 + static TTFs (Typst)
 └── pequod-dark/
     ├── _extension.yml
-    ├── pequod-dark.scss
+    ├── pequod-dark.scss               # reveal-dark rules (rules-only)
+    ├── pequod-variables-dark.scss     # tokens (dark) — theme entry
     └── pequod-dark.theme
 template.qmd                           # consumed by `quarto use template`
 ```
 
-The two extensions share `_pequod-palette.scss`, `_pequod-fonts.scss`,
-`_pequod-revealjs-rules.scss`, and `pequod.lua` via Sass `@import
-"../pequod/…"` and a relative-path Lua filter reference.
+Tokens are listed as **separate theme entries** (not `@import`-ed
+partials), mirroring the pattern used by `quarto-fmup`. Quarto
+compiles `scss:defaults` in REVERSE list order, so listing the
+variables file LAST puts its `!default` declarations first in the
+cascade — the rules files see fully-resolved tokens.
 
 ## Data-viz palette
 
@@ -128,7 +131,8 @@ pequod:
 
 ## Customising
 
-Every token in `_pequod-palette.scss` is declared with `!default`.
+Every token in `pequod-variables.scss` (light) /
+`pequod-variables-dark.scss` (dark) is declared with `!default`.
 Override them in your own qmd before the extension theme loads by
 composing a theme array:
 
@@ -136,13 +140,21 @@ composing a theme array:
 format:
   pequod-revealjs:
     theme:
-      - my-overrides.scss   # set $log-50, $starbuck-light, …
+      - my-overrides.scss   # set $log-50, $starbuck, $ahab, …
       - default
 ```
 
+The active alias names are stable: `$ahab`, `$starbuck`, `$queequeg`,
+`$pip`, `$ishmael`, `$stubb`, `$tashtego`, `$daggoo`, `$danger`,
+plus surface tokens (`$body-bg`, `$body-color`, `$surface`,
+`$border-color`, `$link-color`, …), the chart palette
+(`$pequod-chart-1..8`), and the highlight pill (`$highlight-bg` /
+`$highlight-color`).
+
 ## Licence
 
-The colour values in `_pequod-palette.scss` are licensed CC-BY-4.0 (see
+The colour values in `pequod-variables.scss` /
+`pequod-variables-dark.scss` are licensed CC-BY-4.0 (see
 `LICENSE-CC-BY-4.0`); everything else in this extension (SCSS rules,
 Pandoc themes, Typst include, Lua filter, extension manifests,
 documentation) is MIT (see `LICENSE-MIT`). Both © Tiago Jacinto.

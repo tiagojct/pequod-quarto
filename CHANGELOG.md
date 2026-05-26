@@ -5,6 +5,48 @@ All notable changes to `pequod-quarto` are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2026-05-26
+
+### Changed
+
+- **Token files restructured as separate Quarto theme entries**
+  (`pequod-variables.scss` + `pequod-variables-dark.scss`) rather
+  than being `@import`-ed as a partial from inside the per-format
+  entry files. Same pattern fmup uses. Output is identical; the
+  benefit is that Quarto's deno-sass binding no longer emits 40+
+  spurious "variable used before declaration" warnings on every
+  HTML render. The warnings were a false positive triggered by the
+  palette partial being re-imported across stacked theme entries
+  (one of `pequod-html.scss` + `pequod-html-dark.scss` per Quarto's
+  `theme: { light, dark }` contract). Render logs now clean across
+  all four formats and the docs site.
+
+### Removed
+
+- `_pequod-palette.scss` (partial replaced by `pequod-variables.scss`
+  / `pequod-variables-dark.scss` as theme entries).
+- `pequod-html-dark.scss` (no longer needed — the dark variant is
+  the same `pequod-html.scss` rules file plus a different
+  variables entry).
+
+### Note for downstream overrides
+
+If you were composing a theme array that referenced
+`_pequod-palette.scss` directly:
+
+```yaml
+format:
+  pequod-html:
+    theme:
+      - my-overrides.scss
+      - _pequod-palette.scss   # ← no longer exists
+```
+
+Replace with `pequod-variables.scss` (light) /
+`pequod-variables-dark.scss` (dark). The active alias names
+(`$ahab`, `$starbuck`, `$body-bg`, `$surface`, …) are unchanged so
+your `my-overrides.scss` body needs no edit.
+
 ## [0.3.0] - 2026-05-26
 
 ### Added
@@ -131,5 +173,6 @@ and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.
   comment → Ishmael, function → Starbuck, type → Queequeg,
   constant → Stubb, variable → Daggoo).
 
+[0.3.1]: https://github.com/tiagojct/pequod-quarto/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/tiagojct/pequod-quarto/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/tiagojct/pequod-quarto/releases/tag/v0.2.0

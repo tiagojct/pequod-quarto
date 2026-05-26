@@ -9,6 +9,9 @@ on:
       - ".github/workflows/publish-docs.yml"
   workflow_dispatch:
 
+env:
+  QUARTO_VERSION: "1.7.32"
+
 permissions:
   contents: write
   pages: write
@@ -20,17 +23,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Same TTF install as render-examples.yml so the documentation
-      # site renders with the institutional typography in CI.
+      - name: Install Quarto
+        run: |
+          curl -fsSL -o /tmp/quarto.deb \
+            "https://github.com/quarto-dev/quarto-cli/releases/download/v${{ env.QUARTO_VERSION }}/quarto-${{ env.QUARTO_VERSION }}-linux-amd64.deb"
+          sudo dpkg -i /tmp/quarto.deb
+          quarto --version
+
+      # Same TTF install as render-examples so the documentation site
+      # renders with the institutional typography in CI.
       - name: Install bundled TTFs
         run: |
           mkdir -p ~/.local/share/fonts
           cp _extensions/pequod/fonts/*.ttf ~/.local/share/fonts/
           fc-cache -f -v
-
-      - uses: quarto-dev/quarto-actions/setup@v2.2.0
-        with:
-          version: "1.7.32"
 
       - name: Render docs
         working-directory: docs

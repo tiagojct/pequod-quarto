@@ -1,17 +1,25 @@
 title: Pequod (dark)
 author: Tiago Jacinto
-version: 0.3.0
+version: 0.3.1
 quarto-required: ">=1.4.0"
 contributes:
   formats:
     common:
-      # Shared logo-forwarding + OG/Twitter meta filter. Lives in the
-      # sibling pequod/ ext dir; both extensions consume it via the
-      # relative path so the file ships once.
+      # Shared logo-forwarding + OG/Twitter meta filter. Lives in
+      # the sibling pequod/ ext dir; both extensions consume it via
+      # the relative path so the file ships once.
       filters:
         - ../pequod/pequod.lua
     revealjs:
-      theme: pequod-dark.scss
+      # pequod-variables-dark.scss carries the dark palette as a
+      # separate theme entry — kept inside this ext dir (rather
+      # than referenced across via ../pequod/…) so Quarto's theme
+      # resolver does not need to climb out of the extension's
+      # own directory.
+      theme:
+        - default
+        - pequod-dark.scss
+        - pequod-variables-dark.scss
       highlight-style: pequod-dark.theme
       center: true
       slide-number: c/t

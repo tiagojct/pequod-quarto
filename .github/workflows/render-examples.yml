@@ -7,27 +7,37 @@ on:
     branches: [main]
   workflow_dispatch:
 
+env:
+  QUARTO_VERSION: "1.7.32"
+
 jobs:
   render:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
+      # Install Quarto directly from the GitHub release tarball rather
+      # than through quarto-dev/quarto-actions@v2. The action's
+      # archive download from codeload occasionally returns "An action
+      # could not be found at the URI" with no retries on
+      # ubuntu-24.04 runners (request id 4800:16E4B4:..., across
+      # multiple regions). Direct install is more reliable.
+      - name: Install Quarto
+        run: |
+          curl -fsSL -o /tmp/quarto.deb \
+            "https://github.com/quarto-dev/quarto-cli/releases/download/v${{ env.QUARTO_VERSION }}/quarto-${{ env.QUARTO_VERSION }}-linux-amd64.deb"
+          sudo dpkg -i /tmp/quarto.deb
+          quarto --version
+
       # Install the Atkinson Hyperlegible Next + Mono TTFs at the
-      # system font level. Typst <= 0.14 reads `font-paths` from the
-      # extension dir, but Pandoc/Quarto's pdf-via-typst still consults
-      # the system font set for fallback metrics — having them
-      # installed avoids spurious "font not found" warnings in the log.
+      # system font level so Typst's font resolver picks them up
+      # alongside the bundled font-paths.
       - name: Install bundled TTFs
         run: |
           mkdir -p ~/.local/share/fonts
           cp _extensions/pequod/fonts/*.ttf ~/.local/share/fonts/
           fc-cache -f -v
           fc-list | grep -i "Atkinson" || true
-
-      - uses: quarto-dev/quarto-actions/setup@v2.2.0
-        with:
-          version: "1.7.32"
 
       - name: Render reveal (light)
         run: quarto render example.qmd

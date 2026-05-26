@@ -4,7 +4,8 @@ title: "Customise"
 
 ## Override a single token
 
-Every token in `_pequod-palette.scss` is declared with `!default`,
+Every token in `pequod-variables.scss` (light) /
+`pequod-variables-dark.scss` (dark) is declared with `!default`,
 so any earlier declaration with the same name wins. Drop a tiny SCSS
 overrides file into your project and prepend it to the theme list:
 
@@ -13,7 +14,7 @@ overrides file into your project and prepend it to the theme list:
 /*-- scss:defaults --*/
 
 // Crank Starbuck's link colour darker for a print-leaning publication.
-$starbuck-light: #00658E !default;
+$starbuck: #00658E !default;
 
 // Or shift the log-50 paper towards a colder white.
 $log-50: #F5F2EC !default;

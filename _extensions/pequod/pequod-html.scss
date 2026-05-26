@@ -1,79 +1,15 @@
-/*-- scss:defaults --*/
-
-// =============================================================================
-// Pequod — light mode (Quarto HTML / Bootstrap theme entry)
-// Tokens shared with the reveal.js entry; same active aliases per crew.
-// =============================================================================
-
-@import "pequod-palette";
-
-// ---- Active crew aliases ----------------------------------------------------
-$ahab:     $ahab-light     !default;
-$starbuck: $starbuck-light !default;
-$queequeg: $queequeg-light !default;
-$pip:      $pip-light      !default;
-$ishmael:  $ishmael-light  !default;
-$stubb:    $stubb-light    !default;
-$tashtego: $tashtego-light !default;
-$daggoo:   $daggoo-light   !default;
-
-$danger:   $danger-light   !default;
-
-// ---- Surface & text ---------------------------------------------------------
-$surface:      $log-100 !default;
-$surface-alt:  $log-150 !default;
-$table-stripe: $log-100 !default;
-
-// ---- Bootstrap surfaces -----------------------------------------------------
-$body-bg:        $log-50  !default;
-$body-color:     $log-800 !default;
-$headings-color: $log-700 !default;
-$border-color:   $log-150 !default;
-
-$link-color:        $starbuck !default;
-$link-hover-color:  $queequeg !default;
-$link-decoration:   underline !default;
-
-// ---- Bootstrap typography ---------------------------------------------------
-$font-family-base:      $font-family-sans-serif !default;
-$font-size-base:        1rem !default;
-$line-height-base:      1.55 !default;
-
-$h1-font-size: 2.25rem !default;
-$h2-font-size: 1.75rem !default;
-$h3-font-size: 1.35rem !default;
-$h4-font-size: 1.1rem  !default;
-$headings-font-weight: 600 !default;
-
-// ---- Bootstrap code & blockquote --------------------------------------------
-$code-color:               $daggoo  !default;
-$code-bg:                  $log-100 !default;
-$pre-color:                $log-800 !default;
-$pre-bg:                   $log-100 !default;
-$blockquote-border-color:  $log-400 !default;
-$blockquote-bg:            $log-100 !default;
-$table-border-color:       $log-150 !default;
-
-// ---- Bootstrap border-radius mapping ----------------------------------------
-$border-radius:    $pequod-radius    !default;
-$border-radius-sm: $pequod-radius-sm !default;
-
 /*-- scss:rules --*/
+
+// Pequod — HTML / Bootstrap entry. Rules-only.
+//
+// Palette and active token aliases live in pequod-variables.scss
+// (light) / pequod-variables-dark.scss (dark), listed AFTER this
+// file in the theme: chain of _extension.yml so their !default
+// values land first in Quarto's reverse-compiled defaults cascade.
+// The same rules file is consumed by both light and dark variants
+// because every colour it references is read through a generic
+// active alias ($body-bg, $surface, $ahab, …) supplied by whichever
+// variables file is in scope.
 
 @import "pequod-fonts";
 @import "pequod-html-rules";
-
-// ---- Data-viz palette — CSS custom properties on :root ---------------------
-// Lets Observable / htmlwidgets / plain JS pick up the institutional chart
-// hues at runtime via getComputedStyle(...).getPropertyValue('--pequod-chart-N').
-
-:root {
-  --pequod-chart-1: #{$pequod-chart-1-light};
-  --pequod-chart-2: #{$pequod-chart-2-light};
-  --pequod-chart-3: #{$pequod-chart-3-light};
-  --pequod-chart-4: #{$pequod-chart-4-light};
-  --pequod-chart-5: #{$pequod-chart-5-light};
-  --pequod-chart-6: #{$pequod-chart-6-light};
-  --pequod-chart-7: #{$pequod-chart-7-light};
-  --pequod-chart-8: #{$pequod-chart-8-light};
-}

@@ -1,0 +1,160 @@
+// Pequod design tokens - light mode. Single source of truth.
+//
+// Listed as a Quarto theme entry AFTER the rules file in
+// _extension.yml so its scss:defaults block lands LAST in the
+// source order and FIRST in Quarto's reverse-compiled defaults
+// cascade. Every token uses !default so a user override file
+// listed earlier in the theme chain wins.
+//
+// Why this file exists separate from pequod.scss / pequod-html.scss
+// rather than being @imported as a partial:
+//   Quarto's deno-sass binding emits "variable used before
+//   declaration" warnings whenever a !default chain RHS references
+//   a variable from a partial that gets re-imported across stacked
+//   theme entries (one of pequod-html.scss + pequod-html-dark.scss).
+//   Splitting tokens out as their own theme entry sidesteps the
+//   re-import — output is identical, but the render log is clean.
+
+/*-- scss:defaults --*/
+
+// ---- Crew accents (light) ---------------------------------------------------
+// Inlined as hex literals (not aliased through a $crew-light scale) so
+// no token references another !default token on its RHS — that's the
+// pattern that produces the false-positive "used before declaration"
+// warnings in Quarto's defaults cascade.
+$ahab:     #A83732 !default;
+$starbuck: #0082B1 !default;
+$queequeg: #253E82 !default;
+$pip:      #6A4A00 !default;
+$ishmael:  #76716B !default;
+$stubb:    #CA6435 !default;
+$tashtego: #177C55 !default;
+$daggoo:   #552823 !default;
+
+// One reserved slot for the universal "stop" signal. Light tracks Ahab.
+$danger: #A83732 !default;
+
+// ---- Log scale (warm paper → deep ink) --------------------------------------
+$log-50:  #F7F3EE !default;
+$log-100: #EAE1D7 !default;
+$log-150: #DBC9B6 !default;
+$log-200: #CFAD8E !default;
+$log-300: #BD8C68 !default;
+$log-400: #A16E50 !default;
+$log-500: #835A49 !default;
+$log-600: #335260 !default;
+$log-700: #163F54 !default;
+$log-800: #0D2F42 !default;
+$log-900: #0C222F !default;
+$log-950: #0B1720 !default;
+
+// ---- Active surface & text tokens (light) ----------------------------------
+// Generic names — both reveal and html rules read these, so the same
+// rules file works for both formats. Dark variant overrides each
+// token to the deep-ink equivalent.
+$body-bg:                 #F7F3EE !default;  // log-50
+$body-color:              #0D2F42 !default;  // log-800
+$heading-color:           #163F54 !default;  // log-700
+$headings-color:          #163F54 !default;  // bootstrap alias
+$surface:                 #EAE1D7 !default;  // log-100
+$surface-alt:             #DBC9B6 !default;  // log-150
+$table-stripe:            #EAE1D7 !default;  // log-100
+$border-color:            #DBC9B6 !default;  // log-150
+
+// Code surfaces
+$code-color:              #552823 !default;  // daggoo
+$code-bg:                 #EAE1D7 !default;  // log-100
+$pre-color:               #0D2F42 !default;  // log-800
+$pre-bg:                  #EAE1D7 !default;  // log-100
+$code-block-bg:           #EAE1D7 !default;  // log-100
+$code-block-border-color: #DBC9B6 !default;  // log-150
+
+// Blockquote
+$blockquote-border-color: #A16E50 !default;  // log-400
+$blockquote-bg:           #EAE1D7 !default;  // log-100
+
+// Callout
+$callout-bg:              #F7F3EE !default;  // log-50
+$callout-title-bg:        rgba(#DBC9B6, 0.6) !default;
+
+// Highlight pill (slide-level <mark> / .highlight)
+$highlight-bg:            #CFAD8E !default;  // log-200
+$highlight-color:         #0C222F !default;  // log-900
+
+// Links
+$link-color:              #0082B1 !default;  // starbuck
+$link-hover-color:        #253E82 !default;  // queequeg
+$link-color-hover:        #253E82 !default;  // reveal alias
+$link-decoration:         underline !default;
+
+// Selection
+$selection-bg:            #CFAD8E !default;  // log-200
+$selection-color:         #0C222F !default;  // log-900
+
+// Table border
+$table-border-color:      #DBC9B6 !default;  // log-150
+
+// ---- Data-viz palette (light) ----------------------------------------------
+// Eight categorical slots, ordered so the first colours seen are the
+// most legible against a warm-paper ground. Drawn from the crew so a
+// chart sits inside the same colour grammar as the prose.
+$pequod-chart-1: #0D2F42 !default;  // log-800 (deep ink)
+$pequod-chart-2: #0082B1 !default;  // starbuck
+$pequod-chart-3: #A83732 !default;  // ahab
+$pequod-chart-4: #177C55 !default;  // tashtego
+$pequod-chart-5: #CA6435 !default;  // stubb
+$pequod-chart-6: #253E82 !default;  // queequeg
+$pequod-chart-7: #6A4A00 !default;  // pip
+$pequod-chart-8: #552823 !default;  // daggoo
+
+// ---- Typography -------------------------------------------------------------
+$font-family-sans-serif: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif !default;
+$font-family-monospace:  "Atkinson Hyperlegible Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace !default;
+$font-family-base:       $font-family-sans-serif !default;
+$font-size-base:         1rem !default;
+$line-height-base:       1.55 !default;
+
+$h1-font-size:           2.25rem !default;
+$h2-font-size:           1.75rem !default;
+$h3-font-size:           1.35rem !default;
+$h4-font-size:           1.1rem  !default;
+$headings-font-weight:   600 !default;
+
+// ---- Radii ------------------------------------------------------------------
+$pequod-radius:    4px !default;
+$pequod-radius-sm: 3px !default;
+$border-radius:    4px !default;
+$border-radius-sm: 3px !default;
+
+// ---- Reveal presentation tokens --------------------------------------------
+// Reveal's own SCSS consumes these names. Setting them as !default here
+// keeps reveal's defaults from kicking in.
+$presentation-font-size-root:         28px !default;
+$presentation-line-height:            1.45 !default;
+$presentation-block-margin:           18px !default;
+$presentation-heading-font:           $font-family-sans-serif !default;
+$presentation-heading-color:          #163F54 !default;  // log-700
+$presentation-heading-font-weight:    600 !default;
+$presentation-heading-line-height:    1.2 !default;
+$presentation-heading-letter-spacing: -0.005em !default;
+$presentation-heading-text-transform: none !default;
+$presentation-heading-text-shadow:    none !default;
+$presentation-h1-font-size:           2.00em !default;
+$presentation-h2-font-size:           1.55em !default;
+$presentation-h3-font-size:           1.25em !default;
+$presentation-h4-font-size:           1.00em !default;
+
+/*-- scss:rules --*/
+
+// ---- Data-viz palette — CSS custom properties on :root ---------------------
+
+:root {
+  --pequod-chart-1: #{$pequod-chart-1};
+  --pequod-chart-2: #{$pequod-chart-2};
+  --pequod-chart-3: #{$pequod-chart-3};
+  --pequod-chart-4: #{$pequod-chart-4};
+  --pequod-chart-5: #{$pequod-chart-5};
+  --pequod-chart-6: #{$pequod-chart-6};
+  --pequod-chart-7: #{$pequod-chart-7};
+  --pequod-chart-8: #{$pequod-chart-8};
+}

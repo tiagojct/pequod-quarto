@@ -28,13 +28,13 @@ and re-render the example to see the change.
 _extensions/
 ├── pequod/                          # primary extension (light + html + typst)
 │   ├── _extension.yml
-│   ├── _pequod-palette.scss         # design tokens — single source of truth
+│   ├── pequod-variables.scss        # design tokens (light) — theme entry
+│   ├── pequod-variables-dark.scss   # design tokens (dark)   — theme entry
 │   ├── _pequod-fonts.scss           # @font-face with base64 woff2
 │   ├── _pequod-revealjs-rules.scss  # shared reveal rules (light + dark)
 │   ├── _pequod-html-rules.scss      # shared html rules (light + dark)
-│   ├── pequod.scss                  # revealjs entry (light)
-│   ├── pequod-html.scss             # html entry (light)
-│   ├── pequod-html-dark.scss        # html entry (dark)
+│   ├── pequod.scss                  # revealjs rules entry (rules-only)
+│   ├── pequod-html.scss             # html rules entry (rules-only)
 │   ├── pequod-typst.typ             # typst format include
 │   ├── pequod.lua                   # logo + OG/Twitter meta filter
 │   ├── pequod.theme                 # Pandoc highlight (light)
@@ -42,26 +42,34 @@ _extensions/
 │   └── fonts/                       # source woff2 + static-weight TTFs
 └── pequod-dark/                     # dark reveal variant (shares partials)
     ├── _extension.yml
-    ├── pequod-dark.scss
+    ├── pequod-dark.scss             # reveal-dark rules entry (rules-only)
+    ├── pequod-variables-dark.scss   # design tokens (dark)
     └── pequod-dark.theme
 ```
 
 ## Design rules
 
-### 1. Tokens live in `_pequod-palette.scss`. Nothing else owns colour.
+### 1. Tokens live in `pequod-variables.scss` / `pequod-variables-dark.scss`. Nothing else owns colour.
 
-The log scale (`$log-50` → `$log-950`), the crew accents
-(`$ahab-light` / `$ahab-dark`, …), the data-viz palette
-(`$pequod-chart-1..8-light/dark`), the danger pair, the ink-on-anchor
-constants, the radius tokens — all live in `_pequod-palette.scss` and
-all carry `!default` so consumers can override.
+The crew aliases (`$ahab`, `$starbuck`, …), the log scale
+(`$log-50` → `$log-950`), the surface tokens (`$body-bg`,
+`$surface`, …), the data-viz palette (`$pequod-chart-1..8`), the
+highlight pill, the radius tokens — all live in the variables files
+and all carry `!default` so consumers can override.
 
-Each format entry file (`pequod.scss`, `pequod-html.scss`,
-`pequod-html-dark.scss`, `pequod-dark.scss`) maps the raw palette
-tokens onto active aliases (`$ahab`, `$starbuck`, `$body-bg`,
-`$body-color`, …) and onto Bootstrap variables. Rules files
+Two variants ship side by side: `pequod-variables.scss` (light) and
+`pequod-variables-dark.scss` (dark). Both declare the SAME active
+alias names; only the values differ. Rules files
 (`_pequod-revealjs-rules.scss`, `_pequod-html-rules.scss`) reference
-only those active aliases — never raw `$log-700` or `$ahab-light`.
+only those active aliases — never a `-light` or `-dark` suffix —
+so the same rules file works for both variants.
+
+The variables files are listed as **separate theme entries** in
+`_extension.yml`, not as `@import` partials inside the rules files.
+Quarto's deno-sass binding emits spurious "variable used before
+declaration" warnings whenever a partial gets re-imported across
+stacked theme entries; keeping tokens at the entry level sidesteps
+the warning. Mirror of `quarto-fmup`'s pattern.
 
 ### 2. The reveal SCSS is paint-only.
 

@@ -1,0 +1,143 @@
+// Pequod design tokens - dark mode.
+//
+// Mirror of pequod-variables.scss with the palette inverted for
+// deep-ink backgrounds. Listed as the LAST entry in the dark theme:
+// chain in _extension.yml so its !default declarations land first in
+// Quarto's reverse-compiled defaults cascade.
+
+/*-- scss:defaults --*/
+
+// ---- Crew accents (dark) ----------------------------------------------------
+$ahab:     #E3877C !default;
+$starbuck: #A6DFFF !default;
+$queequeg: #838CCF !default;
+$pip:      #DEC577 !default;
+$ishmael:  #BFBBB6 !default;
+$stubb:    #FFD9BB !default;
+$tashtego: #82C4A2 !default;
+$daggoo:   #A17069 !default;
+
+// Reserved stop signal. Dark variant lightened so contrast holds
+// ≥4.5:1 against the deep-ink surface.
+$danger: #F47A6E !default;
+
+// ---- Log scale --------------------------------------------------------------
+$log-50:  #F7F3EE !default;
+$log-100: #EAE1D7 !default;
+$log-150: #DBC9B6 !default;
+$log-200: #CFAD8E !default;
+$log-300: #BD8C68 !default;
+$log-400: #A16E50 !default;
+$log-500: #835A49 !default;
+$log-600: #335260 !default;
+$log-700: #163F54 !default;
+$log-800: #0D2F42 !default;
+$log-900: #0C222F !default;
+$log-950: #0B1720 !default;
+
+// ---- Active surface & text tokens (dark) -----------------------------------
+$body-bg:                 #0B1720 !default;  // log-950
+$body-color:              #EAE1D7 !default;  // log-100
+$heading-color:           #CFAD8E !default;  // log-200 — keep warm tone on deep ground
+$headings-color:          #CFAD8E !default;
+$surface:                 #0C222F !default;  // log-900
+$surface-alt:             #0D2F42 !default;  // log-800
+$table-stripe:            #0C222F !default;
+$border-color:            #0D2F42 !default;  // log-800
+
+// Code surfaces
+$code-color:              #A17069 !default;  // daggoo-dark
+$code-bg:                 #0C222F !default;  // log-900
+$pre-color:               #EAE1D7 !default;
+$pre-bg:                  #0C222F !default;
+$code-block-bg:           #0C222F !default;
+$code-block-border-color: #0D2F42 !default;
+
+// Blockquote
+$blockquote-border-color: #835A49 !default;  // log-500
+$blockquote-bg:           #0C222F !default;
+
+// Callout
+$callout-bg:              #0C222F !default;
+$callout-title-bg:        rgba(#0D2F42, 0.6) !default;
+
+// Highlight pill
+$highlight-bg:            #163F54 !default;  // log-700
+$highlight-color:         #F7F3EE !default;  // log-50
+
+// Links
+$link-color:              #A6DFFF !default;  // starbuck-dark
+$link-hover-color:        #838CCF !default;  // queequeg-dark
+$link-color-hover:        #838CCF !default;
+$link-decoration:         underline !default;
+
+// Selection
+$selection-bg:            #163F54 !default;  // log-700
+$selection-color:         #F7F3EE !default;
+
+// Table border
+$table-border-color:      #0D2F42 !default;
+
+// ---- Bootstrap dark-mode flag ----------------------------------------------
+// Tells Bootstrap to emit the [data-bs-theme="dark"] tokens. Quarto
+// flips data-bs-theme on the <html> tag at runtime when the user
+// toggles the dark variant.
+$enable-dark-mode: true !default;
+
+// ---- Data-viz palette (dark) -----------------------------------------------
+$pequod-chart-1: #EAE1D7 !default;  // log-100 (warm paper)
+$pequod-chart-2: #A6DFFF !default;  // starbuck-dark
+$pequod-chart-3: #E3877C !default;  // ahab-dark
+$pequod-chart-4: #82C4A2 !default;  // tashtego-dark
+$pequod-chart-5: #FFD9BB !default;  // stubb-dark
+$pequod-chart-6: #838CCF !default;  // queequeg-dark
+$pequod-chart-7: #DEC577 !default;  // pip-dark
+$pequod-chart-8: #A17069 !default;  // daggoo-dark
+
+// ---- Typography -------------------------------------------------------------
+$font-family-sans-serif: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif !default;
+$font-family-monospace:  "Atkinson Hyperlegible Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace !default;
+$font-family-base:       $font-family-sans-serif !default;
+$font-size-base:         1rem !default;
+$line-height-base:       1.55 !default;
+
+$h1-font-size:           2.25rem !default;
+$h2-font-size:           1.75rem !default;
+$h3-font-size:           1.35rem !default;
+$h4-font-size:           1.1rem  !default;
+$headings-font-weight:   600 !default;
+
+// ---- Radii ------------------------------------------------------------------
+$pequod-radius:    4px !default;
+$pequod-radius-sm: 3px !default;
+$border-radius:    4px !default;
+$border-radius-sm: 3px !default;
+
+// ---- Reveal presentation tokens --------------------------------------------
+$presentation-font-size-root:         28px !default;
+$presentation-line-height:            1.45 !default;
+$presentation-block-margin:           18px !default;
+$presentation-heading-font:           $font-family-sans-serif !default;
+$presentation-heading-color:          #CFAD8E !default;
+$presentation-heading-font-weight:    600 !default;
+$presentation-heading-line-height:    1.2 !default;
+$presentation-heading-letter-spacing: -0.005em !default;
+$presentation-heading-text-transform: none !default;
+$presentation-heading-text-shadow:    none !default;
+$presentation-h1-font-size:           2.00em !default;
+$presentation-h2-font-size:           1.55em !default;
+$presentation-h3-font-size:           1.25em !default;
+$presentation-h4-font-size:           1.00em !default;
+
+/*-- scss:rules --*/
+
+:root {
+  --pequod-chart-1: #{$pequod-chart-1};
+  --pequod-chart-2: #{$pequod-chart-2};
+  --pequod-chart-3: #{$pequod-chart-3};
+  --pequod-chart-4: #{$pequod-chart-4};
+  --pequod-chart-5: #{$pequod-chart-5};
+  --pequod-chart-6: #{$pequod-chart-6};
+  --pequod-chart-7: #{$pequod-chart-7};
+  --pequod-chart-8: #{$pequod-chart-8};
+}
